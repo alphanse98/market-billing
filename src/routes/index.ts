@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 
-
 const Calendar = lazy(() => import('../pages/Calendar'));
 const Chart = lazy(() => import('../pages/Chart'));
 const FormElements = lazy(() => import('../pages/Form/FormElements'));
@@ -12,8 +11,10 @@ const Alerts = lazy(() => import('../pages/UiElements/Alerts'));
 const Buttons = lazy(() => import('../pages/UiElements/Buttons'));
 const Items = lazy(() => import('../pages/Items'));
 const Billings = lazy(() => import('../pages/Billings'));
-const Takeorder = lazy(()=>import('../pages/Takeorder'))
+const Takeorder = lazy(()=>import('../pages/Takeorder'));
 const Customers = lazy(() => import('../pages/Customers'));
+const Inventory = lazy(()=>import('../pages/Inventory'));
+const Employees = lazy(()=>import('../pages/Employees'));
 
 const coreRoutes = [
   {
@@ -36,6 +37,17 @@ const coreRoutes = [
    title:"Takeorder",
    component:Takeorder,
   },
+  {
+    path:"/Employees",
+    title:"Employees",
+    component:Employees,
+  },
+  {
+    path:"/Inventory",
+    title:"Inventory",
+    component:Inventory,
+  },
+
   {
     path: '/calendar',
     title: 'Calender',
