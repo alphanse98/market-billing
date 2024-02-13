@@ -36,7 +36,22 @@ const Products = () => {
         </div>
       </div>
      
-      <div className="flex flex-wrap gap-1 overflow-y-auto pt-5 scrollbar h-[70vh]">
+      <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
+        <Itemlisting/>
         <Itemlisting/>
         <Itemlisting/>
         <Itemlisting/>

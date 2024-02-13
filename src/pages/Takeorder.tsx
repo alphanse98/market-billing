@@ -3,7 +3,7 @@ import Products from '../components/Custom/Products';
 
 const Takeorder = () => {
   return (
-    <div className="grid grid-cols-3 h-[80vh] overflow-hidden">
+    <div className="grid grid-cols-3 h-[85vh] overflow-hidden">
       <Products />
       <Pricecart />
     </div>
