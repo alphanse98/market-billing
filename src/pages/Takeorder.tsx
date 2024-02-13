@@ -1,15 +1,13 @@
-import Pricecart from "../components/Pricecart"
-import Products from "../components/Products"
+import Pricecart from '../components/Custom/Pricecart';
+import Products from '../components/Custom/Products';
 
+const Takeorder = () => {
+  return (
+    <div className="grid grid-cols-3 h-[80vh] overflow-hidden">
+      <Products />
+      <Pricecart />
+    </div>
+  );
+};
 
-
-const Takeorder = ()=>{
-    return(
-        <div className="grid grid-cols-3">
-        <Products/>
-        <Pricecart/>
-        </div>
-    )
-}
-
-export default Takeorder
+export default Takeorder;
