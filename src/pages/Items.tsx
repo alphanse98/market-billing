@@ -1,10 +1,12 @@
-import TableThree from "../components/TableThree"
+
+import ItemTableList from "../CustomComponents/ItemTableList"
+
 
 
 const Items = () => {
   return (
     <div>
-      <TableThree/>
+      <ItemTableList/>
     </div>
   )
 }

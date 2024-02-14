@@ -1,5 +1,5 @@
-import Pricecart from '../Customcomponents/Custom/Pricecart';
-import Products from '../Customcomponents/Custom/Products';
+import Pricecart from '../CustomComponents/Pricecart';
+import Products from '../CustomComponents/Products';
 
 const Takeorder = () => {
   return (
