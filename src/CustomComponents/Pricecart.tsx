@@ -3,12 +3,10 @@ import Pricelist from './Pricelist';
 const Pricecart = () => {
   return (
     <div className="col-span-1" style={{ width: '100%' }}>
-      <div className="flex justify-end ">
-        <button className="bg-primary font-medium rounded-md py-2 px-5 text-white hover:bg-opacity-90">
-          Select customer
-        </button>
+      <div className="flex justify-end pt-3 ">
+      <button className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90">Select Customer</button>
       </div>
-      <div className="pt-6 p-1">
+      <div className="pt-8 p-1">
         <div className="flex justify-start text-white bg-primary p-2 rounded-sm">
           <p className="font-bold">Billing Items</p>
         </div>

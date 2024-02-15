@@ -36,27 +36,27 @@ const CustomerListTable = () => {
           <p className="font-medium">Action</p>
         </div>
       </div>
-      {CustomerList &&
-        CustomerList.map((item: any) => (
+      {
+        CustomerList?.map((item: any) => (
           <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
             <div className="col-span-1 hidden items-center  sm:flex">
-              <p className="text-sm text-black dark:text-white">{item.Id}</p>
+              <p className="text-sm text-black dark:text-white">{item?.Id}</p>
             </div>
             <div className="col-span-2 flex items-center">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <p className="text-sm text-black dark:text-white">
-                  {item.CustomerName}
+                  {item?.CustomerName}
                 </p>
               </div>
             </div>
             <div className="col-span-2 flex items-center justify-start">
               <p className="text-sm text-black  dark:text-white">
-                {item.CustomerEmail}
+                {item?.CustomerEmail}
               </p>
             </div>
             <div className="col-span-2 flex items-center justify-start">
               <p className="text-sm text-black  dark:text-white">
-                {item.CustomerNumber}
+                {item?.CustomerNumber}
               </p>
             </div>
             <div className="col-span-1 flex items-center">
