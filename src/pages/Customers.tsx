@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import TableTwo from "../components/TableTwo"
+import CustomerListTable from "../CustomComponents/CustomerList"
 
 const Customers = () => {
 
@@ -11,7 +12,7 @@ const Customers = () => {
             >
               Add Customer
             </Link>
-      <TableTwo/>
+     <CustomerListTable/>
     </div>
   )
 }
