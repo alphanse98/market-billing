@@ -1,5 +1,5 @@
 import Itemlisting from './Itemlisting';
-
+import {ItemsMockData} from "../JasonMockData/ItemsData"
 
 const Products = () => {
   return (
@@ -17,52 +17,18 @@ const Products = () => {
       </div>
      
       <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
+        
+
+        
+        {
+         
+        ItemsMockData?.map((item:any)=>(
+          
+<Itemlisting  key={item.Id} item={item}/>
+        ))    
+}
+        
+
       </div>
     </div>
   );

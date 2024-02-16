@@ -6,8 +6,10 @@ import { BillingData } from "../JasonMockData/BillingData"
 
 
 const BillingTable = ()=>{
+  
+  //Billing Status function
 
-  const styleFn = (item:any)=>{
+  const BillingStatus = (item:string)=>{
    if(item === "pending"){
     return "bg-warning text-warning"
    }else if(item === "Paid"){
@@ -73,7 +75,7 @@ const BillingTable = ()=>{
     </div>
     <div className="col-span-2 flex items-center justify-start">
         {
-            <p className={`inline-flex rounded-full text-left bg-opacity-10 py-1 px-3 text-sm font-medium ${styleFn(item?.status)}`}>{item?.status}</p>
+            <p className={`inline-flex rounded-full text-left bg-opacity-10 py-1 px-3 text-sm font-medium ${BillingStatus(item?.status)}`}>{item?.status}</p>
         }
                 
               </div>

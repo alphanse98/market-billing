@@ -1,3 +1,5 @@
+import { ItemsMockData } from '../JasonMockData/ItemsData';
+
 import Pricelist from './Pricelist';
 
 const Pricecart = () => {
@@ -14,15 +16,13 @@ const Pricecart = () => {
           className="py-2 overflow-y-auto  scrollbar  p-1" 
           style={{ height: '61vh' }}
         >
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
-          <Pricelist />
+          {
+            ItemsMockData?.map((item:any)=>(
+              <Pricelist key={item.Id} item={item}/>
+            ))
+          }
+        
+          
         </div>
       </div>
       <div className="flex justify-between p-2">
