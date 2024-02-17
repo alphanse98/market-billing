@@ -1,12 +1,12 @@
 import Itemlisting from './Itemlisting';
-
+import {ItemsMockData} from "../JasonMockData/ItemsData"
 
 const Products = () => {
   return (
     <div className="col-span-2 w-[100%]">
       <div className="p-2">
         <h4 className="text-base text-black flex justify-between flex-wrap dark:text-white">
-          <div className="w-full">
+          <div className="w-full xl:w-1/2">
             <input
               type="text"
               placeholder="Search customer ..."
@@ -17,52 +17,18 @@ const Products = () => {
       </div>
      
       <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
-        <Itemlisting/>
+        
+
+        
+        {
+         
+        ItemsMockData?.map((item:any)=>(
+          
+<Itemlisting  key={item.Id} item={item}/>
+        ))    
+}
+        
+
       </div>
     </div>
   );

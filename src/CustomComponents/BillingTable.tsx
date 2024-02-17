@@ -6,6 +6,21 @@ import { BillingData } from "../JasonMockData/BillingData"
 
 
 const BillingTable = ()=>{
+  
+  //Billing Status function
+
+  const BillStatus = (item:string)=>{
+   if(item === "pending"){
+    return "bg-warning text-warning"
+   }else if(item === "Paid"){
+    return "bg-success text-success"
+   }else{
+    return "bg-danger text-danger"
+   }
+  }
+
+
+
     return(
         <>
          <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -60,13 +75,7 @@ const BillingTable = ()=>{
     </div>
     <div className="col-span-2 flex items-center justify-start">
         {
-            item?.status === "pending" ? (<p className="inline-flex rounded-full text-left bg-warning bg-opacity-10 py-1 px-3 text-sm font-medium text-warning">
-            {item?.status}
-          </p> ): item?.status === "Paid" ? (<p className="inline-flex rounded-full text-left bg-success bg-opacity-10 py-1 px-3 text-sm font-medium text-success">
-            {item?.status}
-          </p> ) : item?.status === "Unpaid" ? (<p className="inline-flex rounded-full text-left bg-danger bg-opacity-10 py-1 px-3 text-sm font-medium text-danger">
-            {item?.status}
-          </p> ) : ""
+            <p className={`inline-flex rounded-full text-left bg-opacity-10 py-1 px-3 text-sm font-medium ${BillStatus(item?.status)}`}>{item?.status}</p>
         }
                 
               </div>
