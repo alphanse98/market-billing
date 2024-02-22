@@ -2,7 +2,7 @@ const PrintBillUi = () => {
     return (
         <>
             <div style={{
-                backgroundColor: '#e5e7eb',
+                // backgroundColor: '#e5e7eb',
                 display: 'flex',
                 gap: '1rem',
                 justifyContent: 'space-between',
@@ -15,10 +15,10 @@ const PrintBillUi = () => {
                 width:"100%",
                 height:"auto",
                 boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                dark: {
-                    border: '1px solid #333',
-                    backgroundColor: '#1f2937'
-                }
+                // dark: {
+                //     border: '1px solid #333',
+                //     backgroundColor: '#1f2937'
+                // }
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <div>
