@@ -1,9 +1,9 @@
 import Itemlisting from './Itemlisting';
-import {ItemsMockData} from "../JasonMockData/ItemsData"
+import { ItemsMockData } from '../JasonMockData/ItemsData';
 
 const Products = () => {
   return (
-    <div className="col-span-2 w-[100%]">
+    <div className="col-span-2 w-[100%] h-[88vh] overflow-hidden">
       <div className="p-2">
         <h4 className="text-base text-black flex justify-between flex-wrap dark:text-white">
           <div className="w-full xl:w-1/2">
@@ -15,20 +15,11 @@ const Products = () => {
           </div>
         </h4>
       </div>
-     
+
       <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
-        
-
-        
-        {
-         
-        ItemsMockData?.map((item:any)=>(
-          
-<Itemlisting  key={item.Id} item={item}/>
-        ))    
-}
-        
-
+        {ItemsMockData?.map((item: any) => (
+          <Itemlisting key={item.Id} item={item} />
+        ))}
       </div>
     </div>
   );
