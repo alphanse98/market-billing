@@ -1,16 +1,17 @@
-import CardFour from '../../components/CardFour.tsx';
-import CardOne from '../../components/CardOne.tsx';
-import CardThree from '../../components/CardThree.tsx';
-import CardTwo from '../../components/CardTwo.tsx';
-import ChartOne from '../../components/ChartOne.tsx';
-import ChartThree from '../../components/ChartThree.tsx';
-import ChartTwo from '../../components/ChartTwo.tsx';
-import ChatCard from '../../components/ChatCard.tsx';
-import MapOne from '../../components/MapOne.tsx';
-import TableOne from '../../components/TableOne.tsx';
-import React,{useRef} from "react"
+import CardFour from '../../components/CardFour';
+import CardOne from '../../components/CardOne';
+import CardThree from '../../components/CardThree';
+import CardTwo from '../../components/CardTwo';
+import ChartOne from '../../components/ChartOne';
+import ChartThree from '../../components/ChartThree';
+import ChartTwo from '../../components/ChartTwo';
+import ChatCard from '../../components/ChatCard';
+import MapOne from '../../components/MapOne';
+import TableOne from '../../components/TableOne';
+import {useRef} from "react"
 import {useReactToPrint} from "react-to-print"
 import PrintBillUi from "../../CustomComponents/PrintBillUi"
+
 
 
 const ECommerce = () => {
