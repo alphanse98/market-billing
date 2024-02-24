@@ -1,3 +1,4 @@
+import React from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import EditIcon from '../Assets/SvgIcons/EditIcon';
 

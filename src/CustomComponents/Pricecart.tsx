@@ -1,3 +1,4 @@
+import React from 'react';
 import { ItemsMockData } from '../JasonMockData/ItemsData';
 
 import Pricelist from './Pricelist';
