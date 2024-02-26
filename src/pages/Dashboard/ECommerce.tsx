@@ -20,6 +20,7 @@ const ECommerce = () => {
     content: ()=>componentRef.current
   })
 
+  
 //  const CardFour = React.forwardRef((props, ref) => {
 //     return <div ref={ref}><CardFour/></div>;
 //   });
@@ -40,6 +41,7 @@ const ECommerce = () => {
            </div>
         </div>
       <button onClick={()=>handlePrint()} className="bg-warning m-1 p-1 text-black rounded-md">print</button>
+    
 
       </div>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
