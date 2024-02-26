@@ -1,8 +1,33 @@
 import React from "react"
 import { BillMockData } from "../JasonMockData/BillMockData"
+import { saveAs } from 'file-saver';
+import jsPDF from 'jspdf';
 
 
 const PrintBillUi = () => {
+
+    const handleWhatsapp = (item)=>{
+    
+        const content = `Item: ${item?.itemName}\nPrice: ${item?.price}\nQuantity: ${item?.quantity}\nTotal Price: ${item?.totalPrice}`;
+
+       // Create PDF document
+    const pdf = new jsPDF();
+    pdf.text(content, 10, 10); // Assuming printedContent is the text you want to print
+
+    // Save PDF as Blob
+    const blob = pdf.output('blob');
+
+    // Create URL for the Blob
+    const blobUrl = URL.createObjectURL(blob);
+
+    // Construct WhatsApp URL with the Blob URL
+    const whatsappURL = `whatsapp://send?text=${encodeURIComponent(blobUrl)}`;
+
+    // Open WhatsApp with the Blob URL
+    window.open(whatsappURL, '_blank');
+       
+      }
+     
     return (
         <>
         {
@@ -38,6 +63,9 @@ const PrintBillUi = () => {
                     </div>
                     <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center' }}>
                         <p>{item?.totalPrice}</p>
+                    </div>
+                    <div style={{ display: 'flex',alignItems: 'center',justifyContent: 'center' }}>
+                    <button onClick={()=>handleWhatsapp(item)}className="bg-warning m-1 p-1 text-black rounded-md">Share Whatsapp</button>
                     </div>
                 </div>
             ))
