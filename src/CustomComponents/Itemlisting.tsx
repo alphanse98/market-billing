@@ -1,15 +1,13 @@
 import React from 'react';
-import carrot from "../Assets/img/images/carrot.jpg"
+import { vegtableImg } from '../Assets/img/vegetableImg';
 
-const Itemlisting = (props: any, ) => {
-
-
+const Itemlisting = (props: any) => {
   return (
     <>
-      <div className="flex flex-col" >
+      <div className="flex flex-col">
         <div>
           <img
-            src={carrot}
+            src={vegtableImg[props?.item?.ItemImg]}
             className="w-36 h-32 object-cover"
             alt="productimg"
           />

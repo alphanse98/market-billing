@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pricecart from '../CustomComponents/Pricecart';
 import Products from '../CustomComponents/Products';
 
 const Takeorder = () => {
+  const [addTocart, setAddtoCart] = useState([]);
   return (
     <div className=" h-[80vh] hidden sm:flex flex-cal">
       <div>

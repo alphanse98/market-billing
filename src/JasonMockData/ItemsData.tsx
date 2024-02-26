@@ -1,6 +1,4 @@
 
-// import { vegtableImg }from "../Assets/img/vegetableImg";
-
 export let ItemsMockData = [
   {
     Id: 1,
@@ -16,7 +14,7 @@ export let ItemsMockData = [
     ItemName: 'Potato',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
@@ -34,7 +32,7 @@ export let ItemsMockData = [
     ItemName: 'Bitter gourd',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
@@ -43,7 +41,7 @@ export let ItemsMockData = [
     ItemName: 'Cluster beans',
     ItemPrice: 57,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
@@ -61,7 +59,7 @@ export let ItemsMockData = [
     ItemName: 'Garlic',
     ItemPrice: 47.3,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
@@ -70,7 +68,7 @@ export let ItemsMockData = [
     ItemName: 'Lady’s finger',
     ItemPrice: 75,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
@@ -88,7 +86,7 @@ export let ItemsMockData = [
     ItemName: 'Pumpkin',
     ItemPrice: 67,
     IsActive: true,
-    ItemImg: "tomatto",
+    ItemImg: "carrot",
     ItemImg2: "tomatto",
     ItemQty:5
   },
