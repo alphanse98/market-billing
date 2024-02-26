@@ -1,14 +1,12 @@
 
-import { vegtableImg } from "../Assets/Img/vegetableImg"
-
 export let ItemsMockData = [
   {
     Id: 1,
     ItemName: 'tomato',
     ItemPrice: 5,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -16,8 +14,8 @@ export let ItemsMockData = [
     ItemName: 'Potato',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -25,8 +23,8 @@ export let ItemsMockData = [
     ItemName: 'Ash gourd',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -34,8 +32,8 @@ export let ItemsMockData = [
     ItemName: 'Bitter gourd',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -43,8 +41,8 @@ export let ItemsMockData = [
     ItemName: 'Cluster beans',
     ItemPrice: 57,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -52,8 +50,8 @@ export let ItemsMockData = [
     ItemName: 'Onion',
     ItemPrice: 77.5,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -61,8 +59,8 @@ export let ItemsMockData = [
     ItemName: 'Garlic',
     ItemPrice: 47.3,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -70,8 +68,8 @@ export let ItemsMockData = [
     ItemName: 'Lady’s finger',
     ItemPrice: 75,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -79,8 +77,8 @@ export let ItemsMockData = [
     ItemName: 'Beans',
     ItemPrice: 27,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -88,8 +86,8 @@ export let ItemsMockData = [
     ItemName: 'Pumpkin',
     ItemPrice: 67,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "carrot",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -97,8 +95,8 @@ export let ItemsMockData = [
     ItemName: 'White pumpkin',
     ItemPrice: 27,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -106,8 +104,8 @@ export let ItemsMockData = [
     ItemName: 'Elephant yam',
     ItemPrice: 97,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -115,8 +113,8 @@ export let ItemsMockData = [
     ItemName: 'Capsicum',
     ItemPrice: 17,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -124,8 +122,8 @@ export let ItemsMockData = [
     ItemName: '	Green peas',
     ItemPrice: 97,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -133,8 +131,8 @@ export let ItemsMockData = [
     ItemName: 'Cauliflower',
     ItemPrice: 27,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -142,8 +140,8 @@ export let ItemsMockData = [
     ItemName: 'Cabbage',
     ItemPrice: 57.5,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -151,8 +149,8 @@ export let ItemsMockData = [
     ItemName: 'Snake gourd',
     ItemPrice: 47.3,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -160,8 +158,8 @@ export let ItemsMockData = [
     ItemName: 'Lab lab',
     ItemPrice: 47.21,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -169,8 +167,8 @@ export let ItemsMockData = [
     ItemName: '	Bottle gourd',
     ItemPrice: 47.8,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -178,8 +176,8 @@ export let ItemsMockData = [
     ItemName: 'Radish',
     ItemPrice: 47.12,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -187,8 +185,8 @@ export let ItemsMockData = [
     ItemName: 'Cucumber',
     ItemPrice: 47.9,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -196,8 +194,8 @@ export let ItemsMockData = [
     ItemName: 'Carrot',
     ItemPrice: 22,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -205,8 +203,8 @@ export let ItemsMockData = [
     ItemName: 'Turnip',
     ItemPrice: 33,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -214,8 +212,8 @@ export let ItemsMockData = [
     ItemName: 'Ginger',
     ItemPrice: 47,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -223,8 +221,8 @@ export let ItemsMockData = [
     ItemName: 'Beetroot',
     ItemPrice: 55,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -232,8 +230,8 @@ export let ItemsMockData = [
     ItemName: 'Chow chow',
     ItemPrice: 64,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -241,8 +239,8 @@ export let ItemsMockData = [
     ItemName: 'Ivy gourd/Scarlet gourd',
     ItemPrice: 78,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -250,8 +248,8 @@ export let ItemsMockData = [
     ItemName: 'Green papaya',
     ItemPrice: 12,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -259,8 +257,8 @@ export let ItemsMockData = [
     ItemName: 'Snake beans/Yard long beans',
     ItemPrice: 36,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -268,8 +266,8 @@ export let ItemsMockData = [
     ItemName: 'Field beans/Broad beans',
     ItemPrice: 28,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
   {
@@ -277,8 +275,8 @@ export let ItemsMockData = [
     ItemName: 'Celery',
     ItemPrice: 23.25,
     IsActive: true,
-    ItemImg: vegtableImg?.image1,
-    ItemImg2: vegtableImg?.image2,
+    ItemImg: "tomatto",
+    ItemImg2: "tomatto",
     ItemQty:5
   },
 ];
