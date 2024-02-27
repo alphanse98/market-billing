@@ -1,9 +1,22 @@
 import React from 'react';
-import { ItemsMockData } from '../JasonMockData/ItemsData';
-
 import Pricelist from './Pricelist';
+import { PriceMockData } from '../JasonMockData/PriceMockData';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '../Redux/Store';
+
+
+
+
 
 const Pricecart = () => {
+
+  const item = useSelector((state: RootState) => state.item.item);
+  
+  
+
+  
+
+  
   return (
     <div >
       <div className="flex justify-end  ">
@@ -19,8 +32,8 @@ const Pricecart = () => {
           className="py-2 overflow-y-auto  scrollbar  p-1"
           style={{ height: '61vh' }}
         >
-          {ItemsMockData?.map((item: any) => (
-            <Pricelist key={item.Id} item={item} />
+          {item?.map((item: any,index:any) => (
+            <Pricelist key={item.Id} item={item} index={index}/>
           ))}
         </div>
       </div>
