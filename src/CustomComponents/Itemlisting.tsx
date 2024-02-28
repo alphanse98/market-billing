@@ -1,10 +1,16 @@
 import React from 'react';
-import { vegtableImg } from '../Assets/img/vegetableImg';
+import { vegtableImg } from '../Assets/Img/vegetableImg';
+import {  useDispatch } from 'react-redux';
+import { addTocart } from "../Redux/Cartslice"
+import {  AppDispatch } from '../Redux/store';
 
-const Itemlisting = (props: any) => {
+
+const Itemlisting = (props: any,) => {
+  
+  const dispatch: AppDispatch = useDispatch();
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col" onClick={()=>dispatch(addTocart(props.item))}>
         <div>
           <img
             src={vegtableImg[props?.item?.ItemImg]}

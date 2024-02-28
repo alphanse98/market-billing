@@ -1,9 +1,106 @@
+import { useState } from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import { CustomerList } from '../JasonMockData/CustomersData';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import React from 'react';
+
 
 const CustomerListTable = () => {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const Modal = ()=>{
+    return(
+      <div className="fixed z-10 inset-0 overflow-y-auto" style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="relative bg-black w-full max-w-lg p-6 rounded-lg">
+          {/* Modal content */}
+          <Formik
+        initialValues={{
+          name: '',
+          phoneNumber: '',
+          email: ''
+        }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .max(50, 'Must be 50 characters or less')
+            .required('Required'),
+          phoneNumber: Yup.string()
+            .matches(/^[0-9]+$/, 'Must be only digits')
+            .min(10, 'Must be exactly 10 digits')
+            .max(10, 'Must be exactly 10 digits')
+            .required('Required'),
+          email: Yup.string()
+            .email('Invalid email address')
+            .required('Required'),
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        <Form>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Name</label>
+            <Field
+              type="text"
+              id="name"
+              name="name"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage name="name" component="div" className="text-red-500 mt-1" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="phoneNumber" className="block text-gray-700 font-semibold mb-2">Phone Number</label>
+            <Field
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage name="phoneNumber" component="div" className="text-red-500 mt-1" />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
+            <Field
+              type="email"
+              id="email"
+              name="email"
+              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage name="email" component="div" className="text-red-500 mt-1" />
+          </div>
+          <button type="submit" className="bg-white text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
+          <button  className="bg-gray ml-5 text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" onClick={()=>closeModal()}>close</button>
+        </Form>
+      </Formik>
+        </div>
+      </div>
+    </div>
+    )
+  }
+
+
+
+
+
+
+
+
+
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
       <div className="py-6 px-4 md:px-6 xl:px-7.5">
@@ -15,7 +112,9 @@ const CustomerListTable = () => {
               className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             />
           </div>
-          <button className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90">Add customer</button>
+          <Modal/>
+          <button className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90" onClick={()=>openModal()}>Add customer</button>
+       
         </h4>
       </div>
 
