@@ -38,7 +38,7 @@ const BillingTable = ()=>{
     return(
       <div className="fixed z-10 inset-0 overflow-y-auto" style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="modal-title" role="dialog" aria-modal="true">
       <div className="flex items-center justify-center min-h-screen">
-        <div className="relative bg-black w-full max-w-lg p-6 rounded-lg">
+        <div className="relative bg-black w-full max-w-lg p-6 rounded-lg rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark">
           {/* Modal content */}
           <Formik
         initialValues={{
@@ -97,8 +97,8 @@ const BillingTable = ()=>{
             />
             <ErrorMessage name="email" component="div" className="text-red-500 mt-1" />
           </div>
-          <button type="submit" className="bg-white text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
-          <button  className="bg-gray ml-5 text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600" onClick={()=>closeModal()}>close</button>
+          <button type="submit" className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90">Submit</button>
+          <button  className="rounded-md border border-meta-1 bg-meta-1 py-2 px-5 m-2 text-center font-medium text-white transition hover:bg-opacity-90" onClick={()=>closeModal()}>close</button>
         </Form>
       </Formik>
         </div>

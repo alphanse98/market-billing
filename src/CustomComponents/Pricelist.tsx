@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-
-import EditIcon from '../Assets/SvgIcons/EditIcon';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
 import { useDispatch } from 'react-redux';
 import { deleteCart } from "../../src/Redux/Cartslice"
 import {  AppDispatch } from '../../src/Redux/store';
-
-
-
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 
 
@@ -15,6 +12,7 @@ const Pricelist = (props: any) => {
   const dispatch: AppDispatch = useDispatch();
   
   const [isOpen, setIsOpen] = useState(false);
+  const [editisOpen, editsetIsOpen] = useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -22,6 +20,13 @@ const Pricelist = (props: any) => {
 
   const closeModal = () => {
     setIsOpen(false);
+  };
+  const editOpen = () => {
+    editsetIsOpen(true);
+  };
+
+  const editcloseModal = () => {
+    editsetIsOpen(false);
   };
 
   const handleDelete = () => {
@@ -32,20 +37,94 @@ const Pricelist = (props: any) => {
 
  const Modal = ()=>{
   return(
-    <div className="fixed z-10 inset-0 overflow-y-auto" style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div className="fixed z-10 inset-0 overflow-y-auto cursor-pointer" style={{ display: isOpen ? 'block' : 'none' }} aria-labelledby="modal-title" role="dialog" aria-modal="true">
     <div className="flex items-center justify-center min-h-screen">
-      <div className="relative bg-white w-full max-w-lg p-6 rounded-lg">
+      <div className="relative p-3 rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-full max-w-lg p-6 rounded-lg">
         {/* Modal content */}
-        <p className='text-center text-xl py-2 font-bold text-black'>Are you sure?</p>
+        <p className='text-center text-xl py-2 font-bold '>Are you sure?</p>
         <div className="-mx-3 flex flex-wrap gap-y-4">
          
           <div className="2xsm:w-1/2 w-full px-3">
-            <button className="block w-full rounded border border-stroke bg-gray p-3 text-center font-medium text-black transition hover:border-meta-1 hover:bg-meta-1 hover:text-white dark:border-strokedark dark:bg-meta-4 dark:text-white dark:hover:border-meta-1 dark:hover:bg-meta-1" onClick={()=>closeModal()}>Cancel</button>
+            <button className="block w-full rounded border border-stroke bg-gray p-3 text-center font-medium text-black transition hover:border-meta-1 hover:bg-meta-1 hover:text-white dark:border-strokedark dark:bg-meta-4 dark:text-white" onClick={()=>closeModal()}>Cancel</button>
             </div>
             <div className="2xsm:w-1/2 w-full px-3">
               <button className="block w-full rounded border border-meta-1 bg-meta-1 p-3 text-center font-medium text-white transition hover:bg-opacity-90" onClick={()=>handleDelete()}>Delete</button>
               </div>
               </div>
+      </div>
+    </div>
+  </div>
+
+  )
+}
+
+ const Modal2 = ()=>{
+  return(
+    <div className="fixed z-10 inset-0 overflow-y-auto" style={{ display: editisOpen ? 'block' : 'none' }} aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="relative bg-black w-full max-w-lg p-6 rounded-lg rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark">
+        {/* Modal content */}
+        <Formik
+      initialValues={{
+        name: '',
+        phoneNumber: '',
+        email: ''
+      }}
+      validationSchema={Yup.object({
+        name: Yup.string()
+          .max(50, 'Must be 50 characters or less')
+          .required('Required'),
+        phoneNumber: Yup.string()
+          .matches(/^[0-9]+$/, 'Must be only digits')
+          .min(10, 'Must be exactly 10 digits')
+          .max(10, 'Must be exactly 10 digits')
+          .required('Required'),
+        email: Yup.string()
+          .email('Invalid email address')
+          .required('Required'),
+      })}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 400);
+      }}
+    >
+      <Form>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Name</label>
+          <Field
+            type="text"
+            id="name"
+            name="name"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <ErrorMessage name="name" component="div" className="text-red-500 mt-1" />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="phoneNumber" className="block text-gray-700 font-semibold mb-2">Phone Number</label>
+          <Field
+            type="tel"
+            id="phoneNumber"
+            name="phoneNumber"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <ErrorMessage name="phoneNumber" component="div" className="text-red-500 mt-1" />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
+          <Field
+            type="email"
+            id="email"
+            name="email"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
+          />
+          <ErrorMessage name="email" component="div" className="text-red-500 mt-1" />
+        </div>
+        <button type="submit" className="bg-white text-black py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
+        <button  className="rounded-md border border-meta-1 bg-meta-1 py-2 px-5 m-2 text-center font-medium text-white transition hover:bg-opacity-90" onClick={()=>editcloseModal()}>close</button>
+      </Form>
+    </Formik>
       </div>
     </div>
   </div>
@@ -81,7 +160,20 @@ const Pricelist = (props: any) => {
 
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
-            <EditIcon />
+          <svg
+        className="fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512"
+        width="20"
+        height="20"
+        onClick={()=>editOpen()}
+      >
+        <path
+          fill=""
+          d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V299.6l-94.7 94.7c-8.2 8.2-14 18.5-16.8 29.7l-15 60.1c-2.3 9.4-1.8 19 1.4 27.8H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM549.8 235.7l14.4 14.4c15.6 15.6 15.6 40.9 0 56.6l-29.4 29.4-71-71 29.4-29.4c15.6-15.6 40.9-15.6 56.6 0zM311.9 417L441.1 287.8l71 71L382.9 487.9c-4.1 4.1-9.2 7-14.9 8.4l-60.1 15c-5.5 1.4-11.2-.2-15.2-4.2s-5.6-9.7-4.2-15.2l15-60.1c1.4-5.6 4.3-10.8 8.4-14.9z"
+        />
+      </svg>
+      <Modal2/>
           <Modal/>
             
      
