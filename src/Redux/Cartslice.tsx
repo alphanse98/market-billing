@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CartState {
-  item:any[]
+  item: any[];
 }
 
 const initialState: CartState = {
-  item:[]
+  item: [],
 };
 
 const CartSlice = createSlice({
@@ -13,19 +13,16 @@ const CartSlice = createSlice({
   initialState,
   reducers: {
     addTocart: (state, action: PayloadAction<number>) => {
-       state.item.push(action.payload)
+      state.item.push(action.payload);
     },
-    deleteCart:(state,action: PayloadAction<number>)=>{
-      
-      
-        state.item = state.item.filter((item,index)=>index !== action.payload ? item : "")
-        
-      
-      
-    }
+    deleteCart: (state, action: PayloadAction<number>) => {
+      state.item = state.item.filter((item, index) =>
+        index !== action.payload ? item : '',
+      );
+    },
   },
 });
 
-export const { addTocart,deleteCart } = CartSlice.actions;
+export const { addTocart, deleteCart } = CartSlice.actions;
 
 export default CartSlice.reducer;
