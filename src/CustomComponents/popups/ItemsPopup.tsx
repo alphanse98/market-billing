@@ -39,7 +39,7 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
         {/* child popup iu start */}
         <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-[99%] sd:w-[70%]   md:w-[60%] lg:w-[45%]  xl:w-[30%] ">
           {/* icon ui */}
-          <div className="flex justify-end mb-2  p-2">
+          <div className="flex justify-end mb-2 p-2">
             <div
               className="rounded-full bg-meta-1 p-2 cursor-pointer"
               onClick={() => isClose(false)}
@@ -52,11 +52,11 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
             <div className="flex flex-col">
               {/* <!-- Contact Form --> */}
               <div className="rounded-sm  bg-white  dark:border-strokedark dark:bg-boxdark">
-                {/* <div className=" pb-1 "> */}
+              
                   <h3 className=" text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
                     Add Item
                   </h3>
-                {/* </div> */}
+              
                 <form action="#">
                   <div className="">
                     <div className="mb-4.5">
