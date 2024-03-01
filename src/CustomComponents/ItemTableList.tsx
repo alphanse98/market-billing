@@ -4,11 +4,12 @@ import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import { ItemsMockData } from '../JasonMockData/ItemsData';
 import ItemsPopup from './popups/ItemsPopup';
+import ItemsViewPopup from './popups/ItemsViewPopup';
 
 const ItemTableList = (props: any) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isviewPopupOpen, setviewIsPopupOpen] = useState(false);
 
- 
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -46,7 +47,10 @@ const ItemTableList = (props: any) => {
           </div>
         </div>
         {ItemsMockData?.map((item: any) => (
-          <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key = {item?.Id}>
+          <div
+            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+            key={item?.Id}
+          >
             <div className="col-span-1 hidden items-center  sm:flex">
               <p className="text-sm text-black dark:text-white">{item?.Id}</p>
             </div>
@@ -67,7 +71,10 @@ const ItemTableList = (props: any) => {
             </div>
             <div className="col-span-2 flex items-center">
               <div className="flex items-center space-x-3.5">
-                <button className="hover:text-primary">
+                <button
+                  className="hover:text-primary"
+                  onClick={() => setviewIsPopupOpen(true)}
+                >
                   <EyeIcon />
                 </button>
                 <button className="hover:text-primary">
@@ -82,6 +89,7 @@ const ItemTableList = (props: any) => {
         ))}
       </div>
       <ItemsPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
+      <ItemsViewPopup isOpen={isviewPopupOpen} isClose={setviewIsPopupOpen} />
     </>
   );
 };

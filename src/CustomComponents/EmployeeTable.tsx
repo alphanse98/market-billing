@@ -6,9 +6,11 @@ import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 
 import React from 'react';
 import EmployeePopup from './popups/EmployeePopup';
+import EmployeeViewPopup from './popups/EmployeeViewPopup';
 
 const EmployeeTable = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isViewPopup, setViewPopup] = useState(false);
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -135,7 +137,10 @@ const EmployeeTable = () => {
                 </td>
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
-                    <button className="hover:text-primary">
+                    <button
+                      className="hover:text-primary"
+                      onClick={() => setViewPopup(true)}
+                    >
                       <EyeIcon />
                     </button>
                     <button className="hover:text-primary">
@@ -152,6 +157,7 @@ const EmployeeTable = () => {
         </table>
       </div>
       <EmployeePopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
+      <EmployeeViewPopup isOpen={isViewPopup} isClose={setViewPopup} />
     </div>
   );
 };
