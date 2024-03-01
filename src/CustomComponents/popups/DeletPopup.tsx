@@ -1,5 +1,6 @@
 import React from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
+import  { useEffect } from 'react';
 
 interface DeletPopupProps {
   isOpen: boolean;
@@ -14,10 +15,26 @@ const DeletPopup: React.FC<DeletPopupProps> = ({
   delet,
   massage,
 }) => {
+
   const deleteAction = () => {
     delet();
     isClose(false);
   };
+
+   // Esc key pree popup close
+   useEffect(() => {
+    function handleKeyPress(event: any) {
+      if (event.keyCode === 27) {
+        isClose(false);
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
 
   if (isOpen)
     return (
@@ -33,7 +50,7 @@ const DeletPopup: React.FC<DeletPopupProps> = ({
         {/* child popup iu start */}
         <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark ">
           {/* icon ui */}
-          <div className="mb-2  p-2 r flex justify-end  ">
+          <div className="mb-2  p-2  flex justify-end  ">
             <div
               className="rounded-full bg-meta-1 p-2 cursor-pointe"
               onClick={() => isClose(false)}

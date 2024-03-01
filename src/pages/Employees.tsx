@@ -1,12 +1,19 @@
-import EmployeeTable from "../CustomComponents/EmployeeTable"
+import React from 'react';
+import EmployeeTable from '../CustomComponents/EmployeeTable';
 
+const Employees = () => {
+  return (
+    <>
+      <EmployeeTable />
+    </>
+  );
+};
 
-const Employees = ()=>{
-    return(
-        <>
-        <EmployeeTable/>
-        </>
-    )
-}
+export default Employees;
 
-export default Employees
+// Nmae *
+// Mobile number *
+// Password *
+// Address *
+// Access *
+// Email (optional)
