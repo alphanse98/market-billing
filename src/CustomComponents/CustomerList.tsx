@@ -1,13 +1,15 @@
-import { useState } from 'react';
+
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import { CustomerList } from '../JasonMockData/CustomersData';
 import React from 'react';
-import CustomerPopup from './popups/CustomerPopup';
+
 
 const CustomerListTable = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+
+ 
 
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -23,7 +25,7 @@ const CustomerListTable = () => {
 
           <button
             className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90"
-            onClick={() => setIsPopupOpen(true)}
+            
           >
             Add customer
           </button>
@@ -84,7 +86,7 @@ const CustomerListTable = () => {
           </div>
         </div>
       ))}
-      <CustomerPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
+     
     </div>
   );
 };

@@ -3,12 +3,12 @@ import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
 import CheckboxOne from '../../components/CheckboxOne';
 
-interface CustomerPopup {
+interface EmployeePopup {
   isOpen: boolean;
   isClose: any;
 }
 
-const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
+const EmployeePopup: React.FC<EmployeePopup> = ({ isOpen, isClose }) => {
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -61,7 +61,7 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
               <div className="rounded-sm  bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className=" py-4 px-6.5">
                   <h3 className="text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
-                    Add Customer
+                    Add Employee
                   </h3>
                 </div>
                 <form action="#">
@@ -109,17 +109,7 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       ></textarea>
                     </div>
-                    <div className="mb-4.5">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        Notes <span className="text-meta-1">*</span>
-                      </label>
-                      <textarea
-                        rows={3}
-                        placeholder="Type your message"
-                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                      ></textarea>
-                    </div>
-
+                    
                     <div className="w-full mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Email <span className="text-xs">(optional)</span>
@@ -141,7 +131,7 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
                     </div>
 
                     <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray">
-                      Add Customer
+                      Add Employee
                     </button>
                   </div>
                 </form>
@@ -153,4 +143,4 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
     );
 };
 
-export default CustomerPopup;
+export default EmployeePopup;
