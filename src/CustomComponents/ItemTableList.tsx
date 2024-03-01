@@ -6,22 +6,9 @@ import { ItemsMockData } from '../JasonMockData/ItemsData';
 import ItemsPopup from './popups/ItemsPopup';
 
 const ItemTableList = (props: any) => {
-  const [isDeletePopupOpen, setIsDeletePopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  useEffect(() => {
-    function handleKeyPress(event: any) {
-      if (event.keyCode === 27) {
-        setIsDeletePopupOpen(false);
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, []);
-
+ 
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -37,7 +24,7 @@ const ItemTableList = (props: any) => {
 
             <button
               className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90"
-              onClick={() => setIsDeletePopupOpen(true)}
+              onClick={() => setIsPopupOpen(true)}
             >
               Add Items
             </button>
@@ -59,7 +46,7 @@ const ItemTableList = (props: any) => {
           </div>
         </div>
         {ItemsMockData?.map((item: any) => (
-          <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+          <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5" key = {item?.Id}>
             <div className="col-span-1 hidden items-center  sm:flex">
               <p className="text-sm text-black dark:text-white">{item?.Id}</p>
             </div>
@@ -94,7 +81,7 @@ const ItemTableList = (props: any) => {
           </div>
         ))}
       </div>
-      <ItemsPopup isOpen={isDeletePopupOpen} isClose={setIsDeletePopupOpen} />
+      <ItemsPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
     </>
   );
 };
