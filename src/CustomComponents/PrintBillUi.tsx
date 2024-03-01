@@ -6,7 +6,7 @@ import jsPDF from 'jspdf';
 
 const PrintBillUi = () => {
 
-    const handleWhatsapp = (item)=>{
+    const handleWhatsapp = (item:any)=>{
     
         const content = `Item: ${item?.itemName}\nPrice: ${item?.price}\nQuantity: ${item?.quantity}\nTotal Price: ${item?.totalPrice}`;
 
