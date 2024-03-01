@@ -52,11 +52,11 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
             <div className="flex flex-col">
               {/* <!-- Contact Form --> */}
               <div className="rounded-sm  bg-white  dark:border-strokedark dark:bg-boxdark">
-                {/* <div className=" pb-1 "> */}
+              
                   <h3 className=" text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
                     Add Item
                   </h3>
-                {/* </div> */}
+              
                 <form action="#">
                   <div className="">
                     <div className="mb-4.5">
