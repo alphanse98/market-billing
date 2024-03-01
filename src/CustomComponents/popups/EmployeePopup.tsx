@@ -109,7 +109,7 @@ const EmployeePopup: React.FC<EmployeePopup> = ({ isOpen, isClose }) => {
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       ></textarea>
                     </div>
-                    
+
                     <div className="w-full mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Email <span className="text-xs">(optional)</span>
