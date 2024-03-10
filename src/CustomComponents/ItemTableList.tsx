@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import { ItemsMockData } from '../JasonMockData/ItemsData';
 import ItemsPopup from './popups/ItemsPopup';
 import ItemsViewPopup from './popups/ItemsViewPopup';
+import { vegtableImg } from '../Assets/Img/vegetableImg';
 
 const ItemTableList = (props: any) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -36,10 +37,10 @@ const ItemTableList = (props: any) => {
           <div className="col-span-1 flex items-center">
             <p className="font-medium">Id</p>
           </div>
-          <div className="col-span-3 hidden items-center sm:flex">
+          <div className="col-span-3  items-center ">
             <p className="font-medium">Item Name</p>
           </div>
-          <div className="col-span-2 flex items-center">
+          <div className="col-span-2 flex items-center hidden sm:block">
             <p className="font-medium">Price</p>
           </div>
           <div className="col-span-2 flex items-center">
@@ -51,20 +52,20 @@ const ItemTableList = (props: any) => {
             className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
             key={item?.Id}
           >
-            <div className="col-span-1 hidden items-center  sm:flex">
+            <div className="col-span-1  items-center  ">
               <p className="text-sm text-black dark:text-white">{item?.Id}</p>
             </div>
             <div className="col-span-3 flex items-center">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="h-12.5 w-15 rounded-md ">
-                  <img src={item?.ItemImg} alt="Product" />
+                  <img src={vegtableImg[item?.ItemImg]} alt="item" />
                 </div>
                 <p className="text-sm text-black dark:text-white">
                   {item?.ItemName}
                 </p>
               </div>
             </div>
-            <div className="col-span-2 flex items-center justify-start">
+            <div className="col-span-2 flex items-center justify-start hidden sm:block">
               <p className="text-sm text-black  dark:text-white">
                 {item?.ItemPrice}
               </p>

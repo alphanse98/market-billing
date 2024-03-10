@@ -12,7 +12,7 @@ const EmployeeTable = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isViewPopup, setViewPopup] = useState(false);
 
-  const [isChecked, setIsChecked] = useState(false);
+  // const [isChecked, setIsChecked] = useState(false);
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-3 pt-3 pb-2 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -39,18 +39,18 @@ const EmployeeTable = () => {
         <table className="w-full table-auto">
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4 ">
-              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white ">
                 Employee Name
               </th>
-              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Mobile Number
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white  hidden sm:table-cell">
+                Mobile
               </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white hidden sm:table-cell">
                 Password
               </th>
-              <th className="py-4 px-4 font-medium text-black dark:text-white">
+              {/* <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Access
-              </th>
+              </th> */}
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Action
               </th>
@@ -59,21 +59,24 @@ const EmployeeTable = () => {
           <tbody>
             {EmployeeData?.map((item) => (
               <tr className="text-left">
-                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark ">
                   <h5 className="font-medium text-black dark:text-white">
                     {item?.EmpName}
                   </h5>
                 </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark hidden sm:table-cell ">
                   <p className="text-black dark:text-white">
                     {item?.EmpNumber}
                   </p>
                 </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark hidden sm:table-cell">
                   <p className="inline-flex py-1 px-3 text-sm font-medium ">
                     {item?.Password}
                   </p>
                 </td>
+
+                {/* 
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <p className="inline-flex py-1 px-3 text-sm font-medium flex flex-col gap-1">
                     <div>
@@ -134,7 +137,8 @@ const EmployeeTable = () => {
                       </label>
                     </div>
                   </p>
-                </td>
+                </td> */}
+
                 <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                   <div className="flex items-center space-x-3.5">
                     <button
