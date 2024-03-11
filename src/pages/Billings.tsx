@@ -1,3 +1,4 @@
+import React from "react"
 import BillingTable from "../CustomComponents/BillingTable"
 
 const Billings = () => {
