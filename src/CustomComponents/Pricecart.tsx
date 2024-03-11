@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Pricelist from './Pricelist';
 import { useSelector } from 'react-redux';
 import { RootState } from '../Redux/store';
+import SelectCustomerPopup from './popups/SelectCustomer';
 
 const Pricecart = () => {
   const item = useSelector((state: RootState) => state.item.item);
 
+  const [CustomerPopup,setSelectCustomerPopup] = useState(false)
+
   return (
     <div>
       <div className="flex justify-end  ">
-        <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
+        <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90" onClick={()=>setSelectCustomerPopup(true)}>
           Select Customer
         </button>
       </div>
@@ -44,6 +47,7 @@ const Pricecart = () => {
           Clear
         </button>
       </div>
+      <SelectCustomerPopup  isOpen={CustomerPopup} isClose={setSelectCustomerPopup}/>
     </div>
   );
 };
