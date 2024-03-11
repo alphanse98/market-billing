@@ -9,6 +9,7 @@ const Itemlisting = (props: any) => {
 
   return (
     <>
+  
       <div
         className="flex flex-col"
         onClick={() => dispatch(addTocart(props.item))}

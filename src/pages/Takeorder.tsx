@@ -5,6 +5,7 @@ import Products from '../CustomComponents/Products';
 const Takeorder = () => {
   return (
     <>
+    
       <div className=" h-[80vh] hidden sm:flex flex-cal">
         <div>
           <Products />
