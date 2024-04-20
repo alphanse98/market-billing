@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { vegtableImg } from '../Assets/img/vegetableImg';
+import { vegtableImg } from '../Assets/Img/vegetableImg';
 import { useDispatch } from 'react-redux';
 import { deleteCart } from '../../src/Redux/Cartslice';
 import { AppDispatch } from '../../src/Redux/store';
@@ -19,6 +19,8 @@ const Pricelist = (props: any) => {
   const deleteAction = () => {
     dispatch(deleteCart(props.index));
   };
+
+ 
 
   const Modal2 = () => {
     return (

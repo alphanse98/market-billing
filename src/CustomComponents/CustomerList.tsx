@@ -47,14 +47,13 @@ const CustomerListTable = () => {
         <div className="col-span-2 flex items-center  hidden sm:block ">
           <p className="font-medium">Email</p>
         </div>
-       
+
         <div className="col-span-1 flex items-center pl-15 sm:pl-0 ">
           <p className="font-medium">Action</p>
         </div>
       </div>
       {CustomerList?.map((item: any) => (
         <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-
           <div className="col-span-1  items-center    ">
             <p className="text-sm text-black dark:text-white">{item?.Id}</p>
           </div>
@@ -66,8 +65,6 @@ const CustomerListTable = () => {
               </p>
             </div>
           </div>
-
-         
 
           <div className="col-span-2 flex items-center justify-start  hidden sm:block ">
             <p className="text-sm text-black  dark:text-white">
@@ -83,14 +80,13 @@ const CustomerListTable = () => {
 
           <div className="col-span-1 flex items-center ">
             <div className="flex items-center space-x-3.5">
-
               <button
                 className="hover:text-primary"
                 onClick={() => setIsviewPopup(true)}
               >
                 <EyeIcon />
               </button>
-              
+
               <button className="hover:text-primary">
                 <DownloadIcon />
               </button>
@@ -98,7 +94,6 @@ const CustomerListTable = () => {
               <button className="hover:text-primary">
                 <DeleteIcon />
               </button>
-
             </div>
           </div>
         </div>
