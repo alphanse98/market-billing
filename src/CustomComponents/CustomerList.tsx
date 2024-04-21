@@ -5,14 +5,23 @@ import { CustomerList } from '../JasonMockData/CustomersData';
 import React, { useState } from 'react';
 import CustomerPopup from './popups/CustomerPopup';
 import CustomerViewPopup from './popups/CustomerViewPopup';
-
+import Swal from 'sweetalert2';
 const CustomerListTable = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [isViewPopup, setIsviewPopup] = useState(false);
 
+  const one =()=>{
+    Swal.fire({title: "Some Error!!",
+    text: "Please select a customer to perform this action.",
+    icon: "success",
+    confirmButtonText:"ok"
+  });
+  }
   return (
     <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+
+      <button onClick={()=> one()}>Just HH</button>
       <div className="py-6 px-4 md:px-6 xl:px-7.5">
         <h4 className="text-base text-black flex justify-between flex-wrap dark:text-white">
           <div className="w-full xl:w-1/2">
@@ -100,6 +109,7 @@ const CustomerListTable = () => {
       ))}
       <CustomerPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
       <CustomerViewPopup isOpen={isViewPopup} isClose={setIsviewPopup} />
+   
     </div>
   );
 };

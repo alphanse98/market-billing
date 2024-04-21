@@ -53,48 +53,46 @@ const CustomerViewPopup: React.FC<CustomerViewPopup> = ({
             <div className="flex flex-col">
               {/* <!-- Contact Form --> */}
               <div className="rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6">
-                <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">
-                  View Customer
-                </h3>
+               
                 <form action="#">
-                  <div className="mb-4">
+                  <div className="mb-4 flex gap-3">
                     <p className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Customer Name:
+                       Name:
                     </p>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
+                    <p className="text-gray-800 dark:text-gray-200 mb-2 mt-1">
                       Vijay.P
                     </p>
                   </div>
-                  <div className="mb-4">
-                    <p className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Mobile Number:
+                  <div className="mb-4 flex gap-3">
+                    <p className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                       Number :
                     </p>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      987565852
-                    </p>
-                  </div>
-                  <div className="mb-4">
-                    <p className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Secondary Mobile Number
-                    </p>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      954544876
+                    <p className="text-gray-800 dark:text-gray-200 mb-2 mt-1">
+                      986756778
                     </p>
                   </div>
-                  <div className="mb-4">
-                    <p className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Address:
+                  <div className="mb-4 flex gap-3">
+                    <p className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                       Secondary Number :
                     </p>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      1/30,chennai,TamilNadu
+                    <p className="text-gray-800 dark:text-gray-200 mb-2 mt-1">
+                      986756778
                     </p>
                   </div>
-                  <div className="mb-4">
-                    <p className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Email:
+                  <div className="mb-4 flex gap-3">
+                    <p className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                       Address :
                     </p>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      vijay@gmail.com
+                    <p className="text-gray-800 dark:text-gray-200 mb-2 mt-1">
+                      1/195, subramaniyapuram,Thoothukudi
+                    </p>
+                  </div>
+                  <div className="mb-4 flex gap-3">
+                    <p className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                       Email :
+                    </p>
+                    <p className="text-gray-800 dark:text-gray-200 mb-2 mt-1">
+                      block@gmail.com
                     </p>
                   </div>
                   <div className="mb-4">
