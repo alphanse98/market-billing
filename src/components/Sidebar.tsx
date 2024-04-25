@@ -357,6 +357,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Inventory
                 </NavLink>
               </li>
+
+              
             </ul>
           </div>
         </nav>

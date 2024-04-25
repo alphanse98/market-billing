@@ -17,7 +17,7 @@ const BillingTable = () => {
       return 'bg-danger text-danger';
     }
   };
-
+//setup failled
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
