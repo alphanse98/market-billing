@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
-
+import img1 from '../../Assets/Img/images/carrot.jpg';
 interface BillingItemPopup {
   isOpen: boolean;
   isClose: any;
 }
 
-const BillingItemPopup: React.FC<BillingItemPopup> = ({
-  isOpen,
-  isClose,
-}) => {
+const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
+
+  let [tomatoPrice,setTomatoPrice]=useState(0);
+  let [Quantity,setQuantity]=useState(0);
+
+  let total =tomatoPrice*Quantity;
+  const handleqtyInc =()=>{
+    setQuantity(++Quantity);
+  }
+
+  const handleqtyDec =()=>{
+    setQuantity(--Quantity);
+  }
+
+  const handleIncrease=()=>{
+    setTomatoPrice(++tomatoPrice);
+  }
+  const handleDecrease=()=>{
+    setTomatoPrice(--tomatoPrice);
+  }
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -56,30 +72,73 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({
                 <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">
                   View Employee
                 </h3>
-                <div className="" style={{color:'white'}}>
-                 
-                  <div>
-                    <form action="#">
-                      <div className="mb-4 flex">
-                        <p>Employess Name : Vijay</p>
+                <div className="" style={{ color: 'white' }}>
+                  <div
+                    style={{ display: 'flex', justifyContent: 'space-around' }}
+                  >
+                    <img src={img1} height="200px" width="150px" />
+                    <div style={{ lineHeight: '30px' }} className="mt-3">
+                      <p>tomato</p>
+                      <div className="gap-4 mt-3">
+                        <span className="gap-1 font-extrabold">
+                          <button
+                            style={{ border: '1px solid', width: '30px' }}
+                            onClick={handleDecrease}
+                          >
+                            -
+                          </button>
+                        </span>
+                        <span className="gap-1 ml-6">{tomatoPrice}</span>
+                        <span className="gap-1 ml-6">
+                          <button
+                            style={{ border: '1px solid', width: '30px' }}
+                            onClick={handleIncrease}
+                          >
+                            +
+                          </button>
+                        </span>
                       </div>
-                      <div className="mb-4 flex">
-                        <p>Mobile Number :8636636367</p>
+                      <div>
+                        <button
+                          style={{
+                            float: 'right',
+                            border: '1px solid',
+                            width: '50px',
+                          }}
+                          className="mt-6"
+                        >
+                          Add
+                        </button>
                       </div>
-                      <div className="mb-4 flex">
-                        <p>Password :djhhjsdhjhj</p>
-                      </div>
-                      <div className="mb-4 flex">
-                        <p>Address : 1/195,subramaniyapuram,vembar</p>
-                      </div>
-                      <div className="mb-4 flex">
-                        <p>Email : sample@gmail.com</p>
-                      </div>
-                      <div className="mb-4 flex">
-                        <p>Access : Admin</p>
-                      </div>
-                    </form>
+                    </div>
                   </div>
+
+                  <hr className="mt-8" />
+
+                  <div style={{ lineHeight: '30px' }}>
+                    <div className="gap-4 mt-3">
+                      <span className="ml-3">Quantity :</span>
+                      <span className="gap-1 font-extrabold ml-6">
+                        <button style={{ border: '1px solid', width: '30px' }} onClick={handleqtyDec}>
+                          -
+                        </button>
+                      </span>
+                      <span className="gap-1 ml-6">{Quantity}</span>
+                      <span className="gap-1 ml-6">
+                        <button style={{ border: '1px solid', width: '30px' }} onClick={handleqtyInc}>
+                          +
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="ml-3 mt-4">
+                    <p>Price : {total}</p>
+                  </div>
+
+                          <div style={{textAlign:'center'}} className='mt-5'>
+                            <button style={{ border: '1px solid', width: '150px' }}>Save</button>
+                          </div>
                 </div>
               </div>
             </div>

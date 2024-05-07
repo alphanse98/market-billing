@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
 import { useDispatch } from 'react-redux';
 import { addTocart } from '../Redux/Cartslice';
 import { AppDispatch } from '../Redux/store';
+import BillingItemPopup from './popups/BillingItemPopup';
 
 const Itemlisting = (props: any) => {
   const dispatch: AppDispatch = useDispatch();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isViewPopup, setViewPopup] = useState(false);
 
   return (
     <>
@@ -19,6 +22,7 @@ const Itemlisting = (props: any) => {
             src={vegtableImg[props?.item?.ItemImg]}
             className="w-36 h-32 object-cover"
             alt="productimg"
+            onClick={() => setViewPopup(true)}
           />
         </div>
         <div className="w-36 h-24 p-3 rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -33,6 +37,7 @@ const Itemlisting = (props: any) => {
             </span>
           </div>
         </div>
+        <BillingItemPopup isOpen={isViewPopup} isClose={setViewPopup}/>
       </div>
     </>
   );
