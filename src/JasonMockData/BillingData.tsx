@@ -1,3 +1,8 @@
+// utints bag , mixture , leaves , box , thar ,
+// culi calculation
+// vouchar (   load rent )
+// payments
+
 export let BillingData = [
   {
     BillNo: 1456,
@@ -208,5 +213,5 @@ export let BillingData = [
     Items: 3,
     status: 'pending',
     Price: 150,
-  }
+  },
 ];

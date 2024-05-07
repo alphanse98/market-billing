@@ -81,6 +81,7 @@ const DeletPopup: React.FC<DeletPopupProps> = ({
               </button>
             </div>
           </div>
+          
         </div>
       </div>
     );

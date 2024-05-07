@@ -7,8 +7,8 @@ import CustomerPopup from './popups/CustomerPopup';
 import CustomerViewPopup from './popups/CustomerViewPopup';
 import Swal from 'sweetalert2';
 const CustomerListTable = () => {
+  
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
   const [isViewPopup, setIsviewPopup] = useState(false);
 
   const one =()=>{
