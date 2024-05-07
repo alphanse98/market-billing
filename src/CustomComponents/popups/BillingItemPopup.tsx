@@ -2,12 +2,12 @@ import React from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
 
-interface EmployeeViewPopup {
+interface BillingItemPopup {
   isOpen: boolean;
   isClose: any;
 }
 
-const EmployeeViewPopup: React.FC<EmployeeViewPopup> = ({
+const BillingItemPopup: React.FC<BillingItemPopup> = ({
   isOpen,
   isClose,
 }) => {
@@ -89,4 +89,4 @@ const EmployeeViewPopup: React.FC<EmployeeViewPopup> = ({
     );
 };
 
-export default EmployeeViewPopup;
+export default BillingItemPopup;

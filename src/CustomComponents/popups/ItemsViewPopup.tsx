@@ -49,32 +49,16 @@ const ItemsViewPopup: React.FC<ItemsViewPopup> = ({ isOpen, isClose }) => {
           <div className="m-5" onClick={(event) => event.stopPropagation()}>
             <div className="flex flex-col">
               {/* <!-- Contact Form --> */}
-              <div className="rounded-md bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6">
+              <div className="">
                 <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">
                   View Item
                 </h3>
                 <form action="#">
-                  <div className="mb-4">
-                    <label
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                      htmlFor="item-name"
-                    >
-                      Item Name
-                    </label>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      Tomato
-                    </p>
+                  <div className="mb-4" style={{display:'flex'}}>
+                    <p>Item Name : Tomato</p>
                   </div>
                   <div className="mb-4">
-                    <label
-                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-                      htmlFor="price"
-                    >
-                      Price
-                    </label>
-                    <p className="text-gray-800 dark:text-gray-200 mb-2">
-                      ₹ 255
-                    </p>
+                    <p>Price : ₹500</p>
                   </div>
                 </form>
               </div>
