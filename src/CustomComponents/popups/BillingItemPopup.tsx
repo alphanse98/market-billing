@@ -70,18 +70,18 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
               {/* <!-- Contact Form --> */}
               <div className="">
                 <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">
-                  View Employee
+                  Tomato
                 </h3>
                 <div className="" style={{ color: 'white' }}>
                   <div
                     style={{ display: 'flex', justifyContent: 'space-around' }}
                   >
-                    <img src={img1} height="200px" width="150px" />
+                    <img src={img1}  width="130px" style={{borderRadius:'60px'}} />
                     <div style={{ lineHeight: '30px' }} className="mt-3">
-                      <p>tomato</p>
+                      <p>price</p>
                       <div className="gap-4 mt-3">
                         <span className="gap-1 font-extrabold">
-                          <button
+                          <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
                             style={{ border: '1px solid', width: '30px' }}
                             onClick={handleDecrease}
                           >
@@ -90,7 +90,7 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                         </span>
                         <span className="gap-1 ml-6">{tomatoPrice}</span>
                         <span className="gap-1 ml-6">
-                          <button
+                          <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
                             style={{ border: '1px solid', width: '30px' }}
                             onClick={handleIncrease}
                           >
@@ -105,7 +105,7 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                             border: '1px solid',
                             width: '50px',
                           }}
-                          className="mt-6"
+                          className="mt-6 bg-primary font-medium rounded-md text-white hover:bg-opacity-90"
                         >
                           Add
                         </button>
@@ -119,13 +119,13 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                     <div className="gap-4 mt-3">
                       <span className="ml-3">Quantity :</span>
                       <span className="gap-1 font-extrabold ml-6">
-                        <button style={{ border: '1px solid', width: '30px' }} onClick={handleqtyDec}>
+                        <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyDec}>
                           -
                         </button>
                       </span>
                       <span className="gap-1 ml-6">{Quantity}</span>
                       <span className="gap-1 ml-6">
-                        <button style={{ border: '1px solid', width: '30px' }} onClick={handleqtyInc}>
+                        <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyInc}>
                           +
                         </button>
                       </span>
@@ -136,8 +136,8 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                     <p>Price : {total}</p>
                   </div>
 
-                          <div style={{textAlign:'center'}} className='mt-5'>
-                            <button style={{ border: '1px solid', width: '150px' }}>Save</button>
+                          <div style={{float:'right'}} className='mt-5'>
+                            <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90 border-none' style={{ border: '1px solid', width: '130px' }}>Save</button>
                           </div>
                 </div>
               </div>
