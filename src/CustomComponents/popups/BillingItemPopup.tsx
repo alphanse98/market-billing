@@ -76,19 +76,19 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                   <div
                     style={{ display: 'flex', justifyContent: 'space-around' }}
                   >
-                    <img src={img1}  width="130px" style={{borderRadius:'60px'}} />
-                    <div style={{ lineHeight: '30px' }} className="mt-3">
-                      <p>price</p>
-                      <div className="gap-4 mt-3">
-                        <span className="gap-1 font-extrabold">
+                    <img src={img1}  style={{width:'100px',height:'100px'}} />
+                    <div style={{ lineHeight: '30px' }} className="mt-3 gap-3 text-black-2">
+                      <p className='text-white'>price</p>
+                      <div className=" mt-3">
+                        {/* <span className="gap-1 font-extrabold">
                           <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
                             style={{ border: '1px solid', width: '30px' }}
                             onClick={handleDecrease}
                           >
                             -
                           </button>
-                        </span>
-                        <span className="gap-1 ml-6">{tomatoPrice}</span>
+                        </span> */}
+                        {/* <span className="gap-1 ml-6">{tomatoPrice}</span>
                         <span className="gap-1 ml-6">
                           <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
                             style={{ border: '1px solid', width: '30px' }}
@@ -96,19 +96,13 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                           >
                             +
                           </button>
-                        </span>
+                        </span> */}
+                        <input type='number'  />
                       </div>
-                      <div>
-                        <button
-                          style={{
-                            float: 'right',
-                            border: '1px solid',
-                            width: '50px',
-                          }}
-                          className="mt-6 bg-primary font-medium rounded-md text-white hover:bg-opacity-90"
-                        >
-                          Add
-                        </button>
+                      <div className='mt-6'>
+                      <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90 float-right mt-10">
+         Save
+        </button>
                       </div>
                     </div>
                   </div>
@@ -118,17 +112,18 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                   <div style={{ lineHeight: '30px' }}>
                     <div className="gap-4 mt-3">
                       <span className="ml-3">Quantity :</span>
-                      <span className="gap-1 font-extrabold ml-6">
+                      {/* <span className="gap-1 font-extrabold ml-6">
                         <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyDec}>
                           -
                         </button>
-                      </span>
-                      <span className="gap-1 ml-6">{Quantity}</span>
+                      </span> */}
+                      {/* <span className="gap-1 ml-6">{Quantity}</span>
                       <span className="gap-1 ml-6">
                         <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyInc}>
                           +
                         </button>
-                      </span>
+                      </span> */}
+                    <input type="number"  className='ml-4 text-black'/>
                     </div>
                   </div>
 
@@ -137,7 +132,9 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                   </div>
 
                           <div style={{float:'right'}} className='mt-5'>
-                            <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90 border-none' style={{ border: '1px solid', width: '130px' }}>Save</button>
+                          <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90" >
+          Add Items
+        </button>
                           </div>
                 </div>
               </div>
