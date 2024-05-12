@@ -12,32 +12,29 @@ const Itemlisting = (props: any) => {
 
   return (
     <>
-  
       <div
-        className="flex flex-col"
+        className="flex rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark "
         onClick={() => dispatch(addTocart(props.item))}
+        // onClick={() => setViewPopup(true)}
       >
         <div>
           <img
             src={vegtableImg[props?.item?.ItemImg]}
-            className="w-36 h-32 object-cover"
+            className="w-20 h-20 object-cover"
             alt="productimg"
-            onClick={() => setViewPopup(true)}
           />
         </div>
-        <div className="w-36 h-24 p-3 rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark">
-          <div className="px-1">
-            <div className="mb-1 font-bold text-lg font-medium text-black dark:text-white">
-              {props?.item?.ItemName}
-            </div>
+
+        <div className="w-32  mt-4 px-2">
+          <div className=" truncate  font-bold text-base font-medium text-black dark:text-white">
+            {props?.item?.ItemName}
           </div>
-          <div className="px-1">
-            <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold text-gray-700">
-              {props?.item?.ItemPrice}
-            </span>
-          </div>
+
+          <span className="inline-block bg-gray-200 rounded-full text-sm font-semibold dark:text-white">
+            ₹ {props?.item?.ItemPrice}
+          </span>
         </div>
-        <BillingItemPopup isOpen={isViewPopup} isClose={setViewPopup}/>
+        <BillingItemPopup isOpen={isViewPopup} isClose={setViewPopup} />
       </div>
     </>
   );

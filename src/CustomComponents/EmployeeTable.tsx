@@ -16,12 +16,12 @@ const EmployeeTable = () => {
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-3 pt-3 pb-2 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <div className="py-6 px-4 md:px-6 xl:px-7.5">
+      <div className="py-6">
         <h4 className="text-base text-black flex justify-between flex-wrap dark:text-white">
           <div className="w-full xl:w-1/2">
             <input
               type="text"
-              placeholder="Search Items ..."
+              placeholder="Search Employee ..."
               className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             />
           </div>

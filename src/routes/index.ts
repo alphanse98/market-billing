@@ -13,7 +13,6 @@ const Items = lazy(() => import('../pages/Items'));
 const Billings = lazy(() => import('../pages/Billings'));
 const Takeorder = lazy(()=>import('../pages/Takeorder'));
 const Customers = lazy(() => import('../pages/Customers'));
-const Inventory = lazy(()=>import('../pages/Inventory'));
 const Employees = lazy(()=>import('../pages/Employees'));
 // const CommonTable = lazy(()=>import('../CustomComponents/table/CommonTable'));
 const coreRoutes = [
@@ -42,16 +41,6 @@ const coreRoutes = [
     title:"Employees",
     component:Employees,
   },
-  {
-    path:"/Inventory",
-    title:"Inventory",
-    component:Inventory,
-  },
-  // {
-  //   path:"/common",
-  //   title:"Inventory",
-  //   component:CommonTable,
-  // },
   {
     path: '/calendar',
     title: 'Calender',

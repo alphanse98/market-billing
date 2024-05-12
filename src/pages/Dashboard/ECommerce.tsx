@@ -8,23 +8,20 @@ import ChartTwo from '../../components/ChartTwo';
 import ChatCard from '../../components/ChatCard';
 import MapOne from '../../components/MapOne';
 import TableOne from '../../components/TableOne';
-import {useRef} from "react"
-import {useReactToPrint} from "react-to-print"
-import PrintBillUi from "../../CustomComponents/PrintBillUi"
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+import PrintBillUi from '../../CustomComponents/PrintBillUi';
 import React from 'react';
 
-
-
 const ECommerce = () => {
-  const componentRef = useRef()
-  const handlePrint = useReactToPrint({
-    content: ()=>componentRef.current
-  })
+  // const componentRef = useRef()
+  // const handlePrint = useReactToPrint({
+  //   content: ()=>componentRef.current
+  // })
 
-  
-//  const CardFour = React.forwardRef((props, ref) => {
-//     return <div ref={ref}><CardFour/></div>;
-//   });
+  //  const CardFour = React.forwardRef((props, ref) => {
+  //     return <div ref={ref}><CardFour/></div>;
+  //   });
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -34,17 +31,21 @@ const ECommerce = () => {
         <CardFour />
       </div>
 
-      <div>
-        {/* <CardFour ref={componentRef} /> */}
+      {/* <div>
+        <CardFour ref={componentRef} />
         <div ref={componentRef}>
-           <div>
-           <PrintBillUi/>
-           </div>
+          <div>
+            <PrintBillUi />
+          </div>
         </div>
-      <button onClick={()=>handlePrint()} className="bg-warning m-1 p-1 text-black rounded-md">print</button>
-    
+        <button
+          onClick={() => handlePrint()}
+          className="bg-warning m-1 p-1 text-black rounded-md"
+        >
+          print
+        </button>
+      </div> */}
 
-      </div>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <ChartOne />
         <ChartTwo />
