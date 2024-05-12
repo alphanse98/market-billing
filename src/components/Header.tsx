@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import Logo from '../images/logo/logo-icon.svg';
 import DarkModeSwitcher from './DarkModeSwitcher';
-import DropdownMessage from './DropdownMessage';
-import DropdownNotification from './DropdownNotification';
+// import DropdownMessage from './DropdownMessage';
+// import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownUser';
+import React from 'react';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -64,7 +65,7 @@ const Header = (props: {
         <div className="hidden sm:block">
           <form action="https://formbold.com/s/unique_form_id" method="POST">
             <div className="relative">
-              <button className="absolute top-1/2 left-0 -translate-y-1/2">
+              {/* <button className="absolute top-1/2 left-0 -translate-y-1/2">
                 <svg
                   className="fill-body hover:fill-primary dark:fill-bodydark dark:hover:fill-primary"
                   width="20"
@@ -86,13 +87,13 @@ const Header = (props: {
                     fill=""
                   />
                 </svg>
-              </button>
+              </button> */}
 
-              <input
+              {/* <input
                 type="text"
                 placeholder="Type to search..."
                 className="w-full bg-transparent pr-4 pl-9 focus:outline-none"
-              />
+              /> */}
             </div>
           </form>
         </div>
@@ -104,11 +105,11 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            {/* <DropdownNotification /> */}
             {/* <!-- Notification Menu Area --> */}
 
             {/* <!-- Chat Notification Area --> */}
-            <DropdownMessage />
+            {/* <DropdownMessage /> */}
             {/* <!-- Chat Notification Area --> */}
           </ul>
 

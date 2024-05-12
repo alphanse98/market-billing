@@ -1,6 +1,6 @@
 import React from 'react';
 import { BillMockData } from '../JasonMockData/BillMockData';
-import { saveAs } from 'file-saver';
+// import { saveAs } from 'file-saver';
 import jsPDF from 'jspdf';
 
 const PrintBillUi = () => {
