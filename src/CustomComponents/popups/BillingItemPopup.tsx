@@ -8,25 +8,6 @@ interface BillingItemPopup {
 }
 
 const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
-
-  let [tomatoPrice,setTomatoPrice]=useState(0);
-  let [Quantity,setQuantity]=useState(0);
-
-  let total =tomatoPrice*Quantity;
-  const handleqtyInc =()=>{
-    setQuantity(++Quantity);
-  }
-
-  const handleqtyDec =()=>{
-    setQuantity(--Quantity);
-  }
-
-  const handleIncrease=()=>{
-    setTomatoPrice(++tomatoPrice);
-  }
-  const handleDecrease=()=>{
-    setTomatoPrice(--tomatoPrice);
-  }
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -54,7 +35,7 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
         onClick={() => isClose(false)}
       >
         {/* child popup iu start */}
-        <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-[400px]">
+        <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-[99%] sd:w-[70%]   md:w-[60%] lg:w-[45%]  xl:w-[30%] ">
           {/* icon ui */}
           <div className="flex justify-end mb-2 p-2">
             <div
@@ -65,81 +46,54 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
             </div>
           </div>
 
-          <div className="m-5" onClick={(event) => event.stopPropagation()}>
-            <div className="flex flex-col">
-              {/* <!-- Contact Form --> */}
-              <div className="">
-                <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-gray-200">
-                  Tomato
-                </h3>
-                <div className="" style={{ color: 'white' }}>
-                  <div
-                    style={{ display: 'flex', justifyContent: 'space-around' }}
-                  >
-                    <img src={img1}  width="130px" style={{borderRadius:'60px'}} />
-                    <div style={{ lineHeight: '30px' }} className="mt-3">
-                      <p>price</p>
-                      <div className="gap-4 mt-3">
-                        <span className="gap-1 font-extrabold">
-                          <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
-                            style={{ border: '1px solid', width: '30px' }}
-                            onClick={handleDecrease}
-                          >
-                            -
-                          </button>
-                        </span>
-                        <span className="gap-1 ml-6">{tomatoPrice}</span>
-                        <span className="gap-1 ml-6">
-                          <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90'
-                            style={{ border: '1px solid', width: '30px' }}
-                            onClick={handleIncrease}
-                          >
-                            +
-                          </button>
-                        </span>
-                      </div>
-                      <div>
-                        <button
-                          style={{
-                            float: 'right',
-                            border: '1px solid',
-                            width: '50px',
-                          }}
-                          className="mt-6 bg-primary font-medium rounded-md text-white hover:bg-opacity-90"
-                        >
-                          Add
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <hr className="mt-8" />
-
-                  <div style={{ lineHeight: '30px' }}>
-                    <div className="gap-4 mt-3">
-                      <span className="ml-3">Quantity :</span>
-                      <span className="gap-1 font-extrabold ml-6">
-                        <button className='bg-primary font-medium rounded-md  text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyDec}>
-                          -
-                        </button>
-                      </span>
-                      <span className="gap-1 ml-6">{Quantity}</span>
-                      <span className="gap-1 ml-6">
-                        <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90' style={{ border: '1px solid', width: '30px' }} onClick={handleqtyInc}>
-                          +
-                        </button>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="ml-3 mt-4">
-                    <p>Price : {total}</p>
-                  </div>
-
-                          <div style={{float:'right'}} className='mt-5'>
-                            <button className='bg-primary font-medium rounded-md text-white xl:mt-0 hover:bg-opacity-90 border-none' style={{ border: '1px solid', width: '130px' }}>Save</button>
-                          </div>
+          <div
+            className="m-5 mt-0"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex flex-col ">
+              <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-white">
+                Tomato
+              </h3>
+              <div className="flex items-center ">
+                <div className="w-20 h-20 ">
+                  <img src={img1} className="w-20 h-20 rounded-lg" />
                 </div>
+
+                <p className="ml-5 dark:text-white">Price : 10 </p>
+              </div>
+
+              <hr className="my-5" />
+
+              <div>
+                <div className="flex  mb-2">
+                  <p className="ml-5 dark:text-white">Price : </p>
+                  <input
+                    type="number"
+                    value={10}
+                    className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  />
+                </div>
+
+                <div className="flex mb-2">
+                  <p className="ml-5 dark:text-white">Qty : </p>
+                  <input
+                    type="number"
+                    value={10}
+                    className="ml-7 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  />
+                </div>
+
+                <div className="flex mb-2">
+                  <p className="ml-5 dark:text-white">Units : </p>
+                  <input
+                    type="number"
+                    value={10}
+                    className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  />
+                </div>
+                <button className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray" onClick={() => isClose(false)}>
+                  Add Item
+                </button>
               </div>
             </div>
           </div>
