@@ -14,8 +14,8 @@ const Itemlisting = (props: any) => {
     <>
       <div
         className="flex rounded-lg cursor-pointer shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark "
-        onClick={() => dispatch(addTocart(props.item))}
-        // onClick={() => setViewPopup(true)}
+        // onClick={() => dispatch(addTocart(props.item))}
+        onClick={() => setViewPopup(true)}
       >
         <div>
           <img
@@ -34,10 +34,12 @@ const Itemlisting = (props: any) => {
             ₹ {props?.item?.ItemPrice}
           </span>
         </div>
-        <BillingItemPopup isOpen={isViewPopup} isClose={setViewPopup} />
+        
       </div>
+      <BillingItemPopup isOpen={isViewPopup} isClose={setViewPopup} />
     </>
   );
 };
 
 export default Itemlisting;
+   
