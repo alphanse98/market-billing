@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
@@ -12,16 +12,21 @@ import React from 'react';
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
-  // const [loading, setLoading] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => setLoading(false), 1000);
-  // }, []);
-
-  // return loading ? (
-  //   <Loader />
-  // ) :
-
+  if(true) return (
+    <>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        containerClassName="overflow-auto"
+      />
+      <Routes>
+        <Route path="/auth/signin" element={<SignIn />} />
+        <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="*" element={<Navigate to="/auth/signin" replace />} />
+      </Routes>
+    </>
+  );
   
   if(true) return (
     <>
@@ -31,9 +36,6 @@ function App() {
         containerClassName="overflow-auto"
       />
       <Routes>
-        {/* <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} /> */}
-        
         <Route element={<DefaultLayout />}>
           <Route index element={<ECommerce />} />
           {routes.map((routes, index) => {
@@ -55,20 +57,7 @@ function App() {
       </Routes>
     </>
   );
-  if(true) return (
-    <>
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-        containerClassName="overflow-auto"
-      />
-      <Routes>
-        <Route path="/auth/signin" element={<SignIn />} />
-        <Route path="/auth/signup" element={<SignUp />} />
-        <Route path="*" element={<Navigate to="/auth/signin" replace />} />
-      </Routes>
-    </>
-  );
+ 
 }
 
 export default App;
