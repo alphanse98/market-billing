@@ -1,5 +1,5 @@
-import { Suspense, lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Suspense, lazy, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import ECommerce from './pages/Dashboard/ECommerce';
@@ -12,16 +12,8 @@ import React from 'react';
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
-  // const [loading, setLoading] = useState<boolean>(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => setLoading(false), 1000);
-  // }, []);
-
-  // return loading ? (
-  //   <Loader />
-  // ) :
-  return (
+  if(true) return (
     <>
       <Toaster
         position="top-right"
@@ -31,6 +23,19 @@ function App() {
       <Routes>
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="*" element={<Navigate to="/auth/signin" replace />} />
+      </Routes>
+    </>
+  );
+  
+  if(true) return (
+    <>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        containerClassName="overflow-auto"
+      />
+      <Routes>
         <Route element={<DefaultLayout />}>
           <Route index element={<ECommerce />} />
           {routes.map((routes, index) => {
@@ -48,9 +53,11 @@ function App() {
             );
           })}
         </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
+ 
 }
 
 export default App;
