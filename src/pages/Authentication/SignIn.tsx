@@ -1,18 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom';
 // import LogoDark from '../../images/logo/logo-dark.svg';
 // import Logo from '../../images/logo/logo.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import loginApi from "../../service/AtuhService"
 
 
 const SignIn = () => {
-  const [logindata, setLogindata] = useState({ username: '', password: '' });
+  // const [logindata, setLogindata] = useState({ username: '', password: '' });
+
+  const logindata = { username: '', password: '' }
   const navigate = useNavigate();
 
   const schema = Yup.object({
-    username: Yup.number().required('Enter the Mobile Number'),
+    username: Yup.string().min(10, 'Must be 10 Number').max(10, 'Must be 10 Number').required('Enter the Mobile Number'),
 
     password: Yup.string()
       .required('Enter the password'),
