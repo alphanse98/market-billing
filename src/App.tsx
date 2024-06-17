@@ -21,13 +21,13 @@ function App() {
     // Convert the JSON string back to an object
     const auth: any = JSON.stringify(authTokenString);
 
-    if (localStorage.getItem('AuthToken') && auth?.authToken != '') {
+    if (localStorage.getItem('Token') && auth?.authToken != '') {
       setIsLogin(true);
       navigate('*');
     } else setIsLogin(false);
   }, []);
 
-  if (!localStorage.getItem('AuthToken'))
+  if (!localStorage.getItem('Token'))
     return (
       <>
         <Toaster

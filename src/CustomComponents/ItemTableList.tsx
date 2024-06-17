@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
@@ -6,10 +6,22 @@ import { ItemsMockData } from '../JasonMockData/ItemsData';
 import ItemsPopup from './popups/ItemsPopup';
 import ItemsViewPopup from './popups/ItemsViewPopup';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
+import getItems from "../service/ItemService"
 
 const ItemTableList = (props: any) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isviewPopupOpen, setviewIsPopupOpen] = useState(false);
+
+  useEffect(()=>{
+    try {
+      const res = getItems()
+      console.log("res,>>> " , res)
+
+    } catch (error) {
+      console.log(error)
+
+    }
+  },[])
 
   return (
     <>

@@ -14,7 +14,8 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const schema = Yup.object({
-    username: Yup.string().min(10, 'Must be 10 Number').max(10, 'Must be 10 Number').required('Enter the Mobile Number'),
+    username: Yup.string().min(10, 'Must be 10 Number')
+    .max(10, 'Must be 10 Number').required('Enter the Mobile Number'),
 
     password: Yup.string()
       .required('Enter the password'),
@@ -22,12 +23,15 @@ const SignIn = () => {
   });
 
   const login = async (value: any) => {
-    console.log(value);
     const temp = {...value}
     const userName = value.username
     temp.username = userName.toString();
     try {
       const res = await loginApi(temp);
+      localStorage.setItem("Token",res?.data?.authToken)
+      localStorage.setItem("username",res?.data?.username)
+      localStorage.setItem("role",res?.data?.role)
+      localStorage.setItem("businessID",res?.data?.businessID)
       localStorage.setItem("AuthToken", res?.data);
       await navigate("*");
     } catch (error) {
