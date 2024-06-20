@@ -1,23 +1,42 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import LogoDark from '../../images/logo/logo-dark.svg';
 // import Logo from '../../images/logo/logo.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import loginApi from "../../service/AtuhService"
+
 
 const SignIn = () => {
-  const [logindata, setLogindata] = useState({ username: '', password: '' });
+  // const [logindata, setLogindata] = useState({ username: '', password: '' });
+
+  const logindata = { username: '', password: '' }
+  const navigate = useNavigate();
 
   const schema = Yup.object({
-    username: Yup.number().required('Enter the Mobile Number'),
+    username: Yup.string().min(10, 'Must be 10 Number')
+    .max(10, 'Must be 10 Number').required('Enter the Mobile Number'),
 
     password: Yup.string()
-      .required('Enter the password')
-      .max(20, 'Must be 20 character'),
+      .required('Enter the password'),
+      // .max(20, 'Must be 20 character'),
   });
 
-  const login = (value: any) => {
-    console.log(value);
+  const login = async (value: any) => {
+    const temp = {...value}
+    const userName = value.username
+    temp.username = userName.toString();
+    try {
+      const res = await loginApi(temp);
+      localStorage.setItem("Token",res?.data?.authToken)
+      localStorage.setItem("username",res?.data?.username)
+      localStorage.setItem("role",res?.data?.role)
+      localStorage.setItem("businessID",res?.data?.businessID)
+      localStorage.setItem("AuthToken", res?.data);
+      await navigate("*");
+    } catch (error) {
+      console.log("log in error", error);
+    }
   };
 
   return (
