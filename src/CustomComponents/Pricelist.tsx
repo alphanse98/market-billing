@@ -6,7 +6,7 @@ import { AppDispatch } from '../../src/Redux/store';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
-import EditIcon from '../Assets/SvgIcons/EditIcon';
+// import EditIcon from '../Assets/SvgIcons/EditIcon';
 import DeletPopup from './popups/DeletPopup';
 
 const Pricelist = (props: any) => {
@@ -165,7 +165,7 @@ const Pricelist = (props: any) => {
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
             <div>
-              <EditIcon />
+              {/* <EditIcon /> */}
             </div>
             <div
               onClick={() => {

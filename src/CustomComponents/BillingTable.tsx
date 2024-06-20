@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
-import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
+import DownloadIcon from '../Assets/SvgIcons/EditIcon';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import { BillingData } from '../JasonMockData/BillingData';
 import React from 'react';
@@ -17,7 +17,7 @@ const BillingTable = () => {
       return 'bg-danger text-danger';
     }
   };
-//setup failled
+  //setup failled
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {

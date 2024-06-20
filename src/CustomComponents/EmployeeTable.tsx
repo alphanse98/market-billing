@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { EmployeeData } from '../JasonMockData/EmployeeData';
 import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
-import DownloadIcon from '../Assets/SvgIcons/DownloadIcon';
+import DownloadIcon from '../Assets/SvgIcons/EditIcon';
 
 import React from 'react';
 import EmployeePopup from './popups/EmployeePopup';

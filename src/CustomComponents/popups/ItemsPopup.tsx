@@ -3,31 +3,39 @@ import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { addItem } from '../../service/ItemService';
 
-interface ItemsPopup {
-  isOpen: boolean;
-  isClose: any;
-}
-
-const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
-
-  const initialValues = { itemName: '', itemPrice: '' };
+const ItemsPopup: React.FC<any> = ({
+  isOpen,
+  isClose,
+  handleAddItem,
+  editItem,
+  handleEditItem,
+  setEditItem,
+}) => {
+  const initialValues: any = {
+    itemName: editItem?.itemName || '',
+    itemPrice: editItem?.itemPrice || '',
+  };
 
   const schema = Yup.object({
     itemName: Yup.string()
-    .required('Enter the item name')
+      .required('Enter the item name')
       .max(200, 'max 200 character'),
     itemPrice: Yup.string()
       .required('Enter the item Price')
       .max(15, 'Must be 20 character'),
   });
 
+  const handleClose = () => {
+    isClose(false);
+    setEditItem(null);
+  };
+
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
       if (event.keyCode === 27) {
-        isClose(false);
+        handleClose();
       }
     }
     window.addEventListener('keydown', handleKeyPress);
@@ -35,28 +43,6 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
       window.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
-
-  const handleSubtim =async (Item: any) => {
-    console.log(Item);
-
-    const temCopy = {...Item}
-
-    const items:any = localStorage.getItem("items")
-    temCopy.id =  items?.length + 1
-    temCopy.businessID =  localStorage.getItem("businessID")
-    temCopy.itemImg =  "tomatto"
-    temCopy.isActive =  true
-    // temCopy.createDate =  new Date().toISOString();
-    temCopy.createDate =  "2019-04-02 11:45";
-
-    try {
-      await addItem(temCopy)
-      console.log(temCopy)
-    } catch (error) {
-      console.log(error)
-    }
-
-  };
 
   if (isOpen)
     return (
@@ -67,7 +53,7 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
           backdropFilter: 'blur(2px)',
           backgroundColor: 'rgba(9, 9, 9, 0.8)',
         }}
-        onClick={() => isClose(false)}
+        onClick={() => handleClose()}
       >
         {/* child popup iu start */}
         <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-[99%] sd:w-[70%]   md:w-[60%] lg:w-[45%]  xl:w-[30%] ">
@@ -75,7 +61,9 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
           <div className="flex justify-end mb-2 p-2">
             <div
               className="rounded-full bg-meta-1 p-2 cursor-pointer"
-              onClick={() => isClose(false)}
+              onClick={() => {
+                handleClose();
+              }}
             >
               <CloseIcon />
             </div>
@@ -86,14 +74,18 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
               {/* <!-- Contact Form --> */}
               <div className="rounded-sm  bg-white  dark:border-strokedark dark:bg-boxdark">
                 <h3 className=" text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
-                  Add Item
+                  {editItem ? 'Edit Item' : 'Add Item'}
                 </h3>
 
                 <Formik
                   initialValues={initialValues}
                   validationSchema={schema}
                   onSubmit={(value) => {
-                    handleSubtim(value);
+                    if (editItem) {
+                      handleEditItem(value);
+                    } else {
+                      handleAddItem(value);
+                    }
                   }}
                 >
                   <Form>
@@ -134,7 +126,7 @@ const ItemsPopup: React.FC<ItemsPopup> = ({ isOpen, isClose }) => {
                       </div>
 
                       <button className="flex w-full justify-center mt-7 rounded bg-primary p-3 font-medium text-gray">
-                        Add Item
+                        save
                       </button>
                     </div>
                   </Form>
