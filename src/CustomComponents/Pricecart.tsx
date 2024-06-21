@@ -10,7 +10,7 @@ const Pricecart = () => {
   const [CustomerPopup,setSelectCustomerPopup] = useState(false)
 
   return (
-    <div>
+    <div  >
       <div className="flex justify-end  ">
         <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90" onClick={()=>setSelectCustomerPopup(true)}>
           Select Customer

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import EditIcon from '../Assets/SvgIcons/EditIcon';
-import EyeIcon from '../Assets/SvgIcons/EyeIcon';
+// import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import ItemsPopup from './popups/ItemsPopup';
 import ItemsViewPopup from './popups/ItemsViewPopup';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
@@ -62,15 +62,16 @@ const ItemTableList = () => {
   };
 
   useEffect(() => {
-    fetchItems();
+    let localItems: any = localStorage.getItem('items');
+    if (!JSON.parse(localItems)) {
+      fetchItems();
+    } else {
+      setItems(JSON.parse(localItems));
+      seIsLoading(false);
+    }
   }, []);
 
-  if (isLoading)
-    return (
-      <>
-        <Loader />
-      </>
-    );
+  if (isLoading) return <Loader />;
 
   return (
     <>

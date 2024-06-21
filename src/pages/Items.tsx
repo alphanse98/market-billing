@@ -11,9 +11,4 @@ const Items = () => {
 
 export default Items;
 
-// Name *
-// Mobile number *
-// secondary  Mobile number (optional)
-// Address *
-// Email (optional)
-// Additional Notes (optional)
+
