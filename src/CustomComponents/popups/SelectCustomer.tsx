@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
+import ProfileIcon from '../../Assets/SvgIcons/ProfileIcon';
+import getCstomers from '../../service/CustomerService';
+import Loader from '../../common/Loader';
 
 interface SelectCustomerPopup {
   isOpen: boolean;
@@ -11,6 +14,34 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
   isOpen,
   isClose,
 }) => {
+  const [isLoading, seIsLoading] = useState<boolean | null>(true);
+  const [customers, setCustomers] = useState([]);
+
+  const fetchCustomers = async () => {
+    try {
+      const res: any = await getCstomers();
+      setCustomers(res);
+      seIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  // useEffect(() => {
+  //   fetchCustomers();
+  // }, []);
+
+  useEffect(() => {
+    let localItems: any = localStorage.getItem('customers');
+    if (!JSON.parse(localItems)) {
+      fetchCustomers();
+    } else {
+      setCustomers(JSON.parse(localItems));
+      seIsLoading(false);
+    }
+  }, []);
+
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -25,6 +56,8 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
       window.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
+
+  // if (isLoading) return <Loader />;
 
   if (isOpen)
     return (
@@ -57,7 +90,7 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
 
           <div className="m-1" onClick={(event) => event.stopPropagation()}>
             <div className="flex flex-col gap-9">
-              <div className="rounded-sm  bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <div className="rounded-sm  ">
                 <div className=" py-4 px-6.5">
                   <h3 className="text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
                     Select Customer
@@ -65,171 +98,27 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
                 </div>
 
                 <div className="p-1">
-                  <div className="flex items-center justify-center overflow-y-auto">
-                    <table className="table-auto min-w-full ">
-                      <thead>
-                        <tr>
-                          <th className="px-4 py-2 ">ID</th>
-                          <th className="px-4 py-2 ">Item Name</th>
-                          <th className="px-4 py-2 ">Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className=" px-4 py-2 text-center">1</td>
-                          <td className=" px-4 py-2 text-center">divakar</td>
-                          <td className=" px-4 py-2 text-center">
-                            <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90">
-                              select
-                            </button>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className=" overflow-y-auto">
+                    {customers?.map((item: any) => (
+                      <div className="flex  items-center   gap-6  m-2 p-2 cursor-pointer">
+                        <div className="  items-center    ">
+                          <p className="rounded-full bg-primary p-3">
+                            <ProfileIcon />
+                          </p>
+                        </div>
+                        <div className="  items-center    ">
+                          <p className="text-sm text-black dark:text-white">
+                            {item?.id}
+                          </p>
+                        </div>
+
+                        <div className="  items-center    ">
+                          <p className="text-sm  text-black dark:text-white">
+                          {item?.customersName}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

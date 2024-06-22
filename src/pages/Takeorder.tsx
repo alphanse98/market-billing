@@ -6,11 +6,13 @@ const Takeorder = () => {
   return (
     <>
     
-      <div className=" h-[80vh] hidden sm:flex flex-cal">
-        <div>
+      <div className=" h-[80vh] w-full  flex ">
+        <div className='w-3/5'>
           <Products />
         </div>
-        <div className="test" style={{ width: '2000px' }}>
+
+        <div className='w-2/5'>
+        {/* <div className="test" style={{ width: '20000px' }}> */}
           <Pricecart />
         </div>
       </div>

@@ -3,8 +3,9 @@ import axios from 'axios';
 
 export default async function getItems() {
   try {
-    const res = await axios.get(baseUrl + 'item/get');
-    localStorage.setItem("items",res?.data );
+    const res:any = await axios.get(baseUrl + 'item/get');
+    localStorage.setItem("items",JSON.stringify(res?.data) );
+    // localStorage.setItem("items",[{nameone:"alphanse"}] );
     return res?.data
   } catch (error) {
     console.log(error)

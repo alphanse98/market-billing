@@ -39,17 +39,6 @@ const AddItemPopup: React.FC<AddItemPopup> = ({ isOpen, isClose }) => {
     }
   };
 
-  const incrementPrice = () => {
-    setPrice(price + 1);
-    setTotal(quantity * (price + 1));
-  };
-
-  const decrementPrice = () => {
-    if (price > 1) {
-      setPrice(price - 1);
-      setTotal(quantity * (price - 1));
-    }
-  };
 
   if (isOpen)
     return (
