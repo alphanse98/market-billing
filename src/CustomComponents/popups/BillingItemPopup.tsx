@@ -7,7 +7,15 @@ interface BillingItemPopup {
   isClose: any;
 }
 
-const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
+const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
+
+
+  const initialValues: any = { 
+    Price:"",
+    qty:"",
+    unit:"",
+  }
+
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -52,14 +60,19 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
           >
             <div className="flex flex-col ">
               <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-white">
-                Tomato
+                Add Item
               </h3>
-              <div className="flex items-center ">
-                <div className="w-20 h-20 ">
+              <div className="flex  ">
+                <div className="w-20 h-20 ">  
                   <img src={img1} className="w-20 h-20 rounded-lg" />
                 </div>
 
-                <p className="ml-5 dark:text-white">Price : 10 </p>
+                <div className='ml-5'>
+                  <div className="text-xl font-bold text-gray-800 dark:text-white">
+                    {item?.itemName}{' '}
+                  </div>
+                  <p className="mt-2 dark:text-white"> Price : {item?.itemPrice} </p>
+                </div>
               </div>
 
               <hr className="my-5" />
@@ -91,8 +104,11 @@ const BillingItemPopup: React.FC<BillingItemPopup> = ({ isOpen, isClose }) => {
                     className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div>
-                <button className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray" onClick={() => isClose(false)}>
-                  Add Item
+                <button
+                  className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray"
+                  onClick={() => isClose(false)}
+                >
+                  Submit
                 </button>
               </div>
             </div>

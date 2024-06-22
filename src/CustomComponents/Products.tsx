@@ -2,9 +2,12 @@ import Itemlisting from './Itemlisting';
 import React, { useEffect, useState } from 'react';
 import getItems from '../service/ItemService';
 import Loader from '../common/Loader';
+import BillingItemPopup from './popups/BillingItemPopup';
 
 const Products = () => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [items, setItems] = useState([]);
 
   // item api call
@@ -16,6 +19,11 @@ const Products = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleSelectedItem = (item: any) => {
+    setSelectedItem(item);
+    setIsPopupOpen(true);
   };
 
   useEffect(() => {
@@ -46,8 +54,14 @@ const Products = () => {
       </div>
 
       <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
-        {items?.map((item: any) => <Itemlisting item={item} />)}
+        {items?.map((item: any) => (
+          <div onClick={() => handleSelectedItem(item)}>
+            {' '}
+            <Itemlisting item={item} />{' '}
+          </div>
+        ))}
       </div>
+      <BillingItemPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} item = {selectedItem}/>
     </div>
   );
 };
