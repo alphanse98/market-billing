@@ -1,20 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
 import img1 from '../../Assets/Img/images/carrot.jpg';
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 interface BillingItemPopup {
   isOpen: boolean;
   isClose: any;
 }
 
 const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
+  const initialValues: any = {
+    Price: item?.itemPrice || '',
+    qty: 1,
+    // unit: '',
+  };
 
+  const schema = Yup.object({
+    Price: Yup.string().required('Enter the Price'),
 
-  const initialValues: any = { 
-    Price:"",
-    qty:"",
-    unit:"",
-  }
+    qty: Yup.string().required('Enter the item Price'),
+  });
 
   // Esc key pree popup close
   useEffect(() => {
@@ -63,54 +70,74 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
                 Add Item
               </h3>
               <div className="flex  ">
-                <div className="w-20 h-20 ">  
+                <div className="w-20 h-20 ">
                   <img src={img1} className="w-20 h-20 rounded-lg" />
                 </div>
 
-                <div className='ml-5'>
+                <div className="ml-5">
                   <div className="text-xl font-bold text-gray-800 dark:text-white">
                     {item?.itemName}{' '}
                   </div>
-                  <p className="mt-2 dark:text-white"> Price : {item?.itemPrice} </p>
+                  <p className="mt-2 dark:text-white">
+                    {' '}
+                    Price : {item?.itemPrice}{' '}
+                  </p>
                 </div>
               </div>
 
               <hr className="my-5" />
-
-              <div>
-                <div className="flex  mb-2">
-                  <p className="ml-5 dark:text-white">Price : </p>
-                  <input
-                    type="number"
-                    value={10}
-                    className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+              <Formik
+                initialValues={initialValues}
+                validationSchema={schema}
+                onSubmit={(value) => {
+                  console.log('value >>>', value);
+                }}
+              >
+                <Form>
+                  <div className="flex  mb-2">
+                    <p className="ml-5 dark:text-white">Price : </p>
+                    <Field
+                      type="number"
+                      name="Price"
+                      className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="Price"
+                    component="div"
+                    className="text-danger mr-4"
                   />
-                </div>
 
-                <div className="flex mb-2">
-                  <p className="ml-5 dark:text-white">Qty : </p>
-                  <input
-                    type="number"
-                    value={10}
-                    className="ml-7 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                  <div className="flex mb-2">
+                    <p className="ml-5 dark:text-white">Qty : </p>
+                    <Field
+                      type="number"
+                      name="qty"
+                      className="ml-7 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="qty"
+                    component="div"
+                    className="text-danger"
                   />
-                </div>
 
-                <div className="flex mb-2">
+                  {/* <div className="flex mb-2">
                   <p className="ml-5 dark:text-white">Units : </p>
                   <input
                     type="number"
-                    value={10}
+                    
                     className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
-                </div>
-                <button
-                  className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray"
-                  onClick={() => isClose(false)}
-                >
-                  Submit
-                </button>
-              </div>
+                </div> */}
+                  <button
+                    className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray"
+                   
+                  >
+                    Save
+                  </button>
+                </Form>
+              </Formik>
             </div>
           </div>
         </div>
