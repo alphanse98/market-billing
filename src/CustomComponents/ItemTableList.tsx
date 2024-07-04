@@ -5,8 +5,10 @@ import EditIcon from '../Assets/SvgIcons/EditIcon';
 import ItemsPopup from './popups/ItemsPopup';
 import ItemsViewPopup from './popups/ItemsViewPopup';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
-import getItems, { addItem, updateItem } from '../service/ItemService';
+import getItems, { addItem, updateItem, deleteItem } from '../service/ItemService';
 import Loader from '../common/Loader';
+import DeletPopup from './popups/DeletPopup';
+
 
 const ItemTableList = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -14,7 +16,10 @@ const ItemTableList = () => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
   const [items, setItems] = useState([]);
   const [editItem, setEditItem] = useState<object | null>(null);
+  const [isdeletePopUp, setdeletePopUp] = useState(false);
+  const [isdeletableItem, setdeletableItem] = useState<any>(null);
 
+  
   // item api call
   const fetchItems = async () => {
     try {
@@ -60,6 +65,18 @@ const ItemTableList = () => {
       console.log(error);
     }
   };
+
+  const handleDelete = async (item:object) =>{
+    console.log(isdeletableItem);
+    try{
+      await deleteItem(item);
+      await fetchItems();
+    }
+    catch (error){
+      console.log(error);
+    }
+
+  }
 
   useEffect(() => {
     let localItems: any = localStorage.getItem('items');
@@ -149,7 +166,11 @@ const ItemTableList = () => {
                 >
                   <EditIcon />
                 </button>
-                <button className="hover:text-primary">
+                <button className="hover:text-primary"
+                  onClick={()=> {
+                    setdeletePopUp(true), setdeletableItem(item);
+                    }}>
+                  
                   <DeleteIcon />
                 </button>
               </div>
@@ -166,6 +187,13 @@ const ItemTableList = () => {
         handleEditItem={handleEditItem}
       />
       <ItemsViewPopup isOpen={isviewPopupOpen} isClose={setviewIsPopupOpen} />
+
+      <DeletPopup
+        isOpen={isdeletePopUp}
+        isClose={setdeletePopUp}
+        delet={handleDelete}
+        massage={`want to delete ${isdeletableItem?.itemName} item ?`}
+      />
     </>
   );
 };
