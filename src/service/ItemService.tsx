@@ -19,3 +19,7 @@ export function addItem (item:object){
 export function updateItem (item:object){
   return axios.put(baseUrl + "item/update",item);
 }
+
+export function deleteItem (item:object){
+  return axios.delete(baseUrl + "item/delete",item)
+}
