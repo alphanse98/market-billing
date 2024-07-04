@@ -4,10 +4,10 @@ import getItems from '../service/ItemService';
 import Loader from '../common/Loader';
 import BillingItemPopup from './popups/BillingItemPopup';
 
-const Products = () => {
+const Products: React.FC<any> = ({ billableData, setBillableData }) => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState({});
   const [items, setItems] = useState([]);
 
   // item api call
@@ -24,6 +24,20 @@ const Products = () => {
   const handleSelectedItem = (item: any) => {
     setSelectedItem(item);
     setIsPopupOpen(true);
+  };
+
+  const handleSave = (item: any) => {
+    let temCopy: any = { ...selectedItem }; // update price and qty
+    temCopy.itemPrice = item?.Price;
+    temCopy.qty = item?.qty;
+
+    setBillableData((prev: any) => ({
+      // update price and qty billableData
+      ...prev,
+      items: [...prev?.items, temCopy],
+    }));
+
+    setIsPopupOpen(false);
   };
 
   useEffect(() => {
@@ -54,14 +68,19 @@ const Products = () => {
       </div>
 
       <div className="flex flex-wrap gap-2.5 overflow-y-auto pt-5 scrollbar h-5/6">
-        {items?.map((item: any) => (
-          <div onClick={() => handleSelectedItem(item)}>
+        {items?.map((item: any, index: any) => (
+          <div key={index} onClick={() => handleSelectedItem(item)}>
             {' '}
             <Itemlisting item={item} />{' '}
           </div>
         ))}
       </div>
-      <BillingItemPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} item = {selectedItem}/>
+      <BillingItemPopup
+        isOpen={isPopupOpen}
+        isClose={setIsPopupOpen}
+        item={selectedItem}
+        handleSave={handleSave}
+      />
     </div>
   );
 };
