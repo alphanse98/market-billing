@@ -55,14 +55,14 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
           <div className="m-5" onClick={(event) => event.stopPropagation()}>
             <div className="flex flex-col gap-9">
               {/* <!-- Contact Form --> */}
-              <div className="rounded-sm  bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+              <div className="rounded-sm  bg-white  dark:border-strokedark dark:bg-boxdark">
                 <div className=" py-4 px-6.5">
                   <h3 className="text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
                     Add Customer
                   </h3>
                 </div>
                 <form action="#">
-                  <div className="p-6.5">
+                  <div className="">
                     <div className="w-full mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Name <span className="text-meta-1">*</span>

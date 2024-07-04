@@ -1,18 +1,59 @@
 import React, { useState } from 'react';
 import Pricelist from './Pricelist';
-import { useSelector } from 'react-redux';
-import { RootState } from '../Redux/store';
 import SelectCustomerPopup from './popups/SelectCustomer';
+import DeletPopup from './popups/DeletPopup';
+import BillingItemPopup from './popups/BillingItemPopup';
+import { AnyObject } from 'yup';
 
-const Pricecart = () => {
-  const item = useSelector((state: RootState) => state.item.item);
+const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
+  const [CustomerPopup, setSelectCustomerPopup] = useState(false);
+  const [isdeletepopup, setisDeletepopup] = useState(false);
+  const [iseditpopup, setisEditpopup] = useState(false);
+  const [deletableItem, setDeletableItem] = useState<any>(null);
+  const [editItem, setEditItem] = useState<object>();
 
-  const [CustomerPopup,setSelectCustomerPopup] = useState(false)
+  const selectDeleteItem = (item: object) => {
+    setisDeletepopup(true);
+    setDeletableItem(item);
+    // setDeleteIndex(index);
+  };
+
+  const handleDelete = () => {
+    let tempCopy: any = { ...billableData };
+    tempCopy.items = tempCopy?.items.filter(
+      (param: any) => param?.id !== deletableItem?.id,
+    );
+    setBillableData(tempCopy);
+  };
+
+  const selectEditItem = (item: object) => {
+    setEditItem(item);
+    setisEditpopup(true);
+    console.log(item);
+  };
+
+  const handleEditItem = (value:any) => {
+    
+    let updatedItem :AnyObject = {...editItem}
+    updatedItem.itemPrice = value?.itemPrice
+    updatedItem.qty = value?.qty
+
+    let items =  billableData.itms 
+
+    // for (let i =0 ; i<= )
+
+    console.log(items)
+
+    setisEditpopup(false)
+  };
 
   return (
-    <div  >
+    <div>
       <div className="flex justify-end  ">
-        <button className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90" onClick={()=>setSelectCustomerPopup(true)}>
+        <button
+          className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90"
+          onClick={() => setSelectCustomerPopup(true)}
+        >
           Select Customer
         </button>
       </div>
@@ -24,8 +65,15 @@ const Pricecart = () => {
           className="py-2 overflow-y-auto  scrollbar  p-1"
           style={{ height: '61vh' }}
         >
-          {item?.map((item: any, index: any) => (
-            <Pricelist key={item.Id} item={item} index={index} />
+          {billableData?.items?.map((item: any, index: any) => (
+            <div key={index}>
+              <Pricelist
+                item={item}
+                index={index}
+                selectDeleteItem={selectDeleteItem}
+                selectEditItem={selectEditItem}
+              />
+            </div>
           ))}
         </div>
       </div>
@@ -47,7 +95,27 @@ const Pricecart = () => {
           Clear
         </button>
       </div>
-      <SelectCustomerPopup  isOpen={CustomerPopup} isClose={setSelectCustomerPopup}/>
+
+      <SelectCustomerPopup
+        isOpen={CustomerPopup}
+        isClose={setSelectCustomerPopup}
+      />
+
+      <DeletPopup
+        isOpen={isdeletepopup}
+        isClose={setisDeletepopup}
+        delet={handleDelete}
+        massage={`want to delete  ${deletableItem?.itemName} item ?`}
+      />
+
+      <BillingItemPopup
+        isOpen={iseditpopup}
+        isClose={setisEditpopup}
+        item={null}
+        handleSave={null}
+        editItem={editItem}
+        handleEditItem={handleEditItem}
+      />
     </div>
   );
 };

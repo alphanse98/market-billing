@@ -3,7 +3,7 @@ import Pricecart from '../CustomComponents/Pricecart';
 import Products from '../CustomComponents/Products';
 
 const Takeorder = () => {
-  const [addTocart, setAddTocart] = useState({
+  const [billableData, setBillableData] = useState({
     date: '',
     billNumber: '',
     customername: '',
@@ -14,12 +14,18 @@ const Takeorder = () => {
     <>
       <div className=" h-[80vh] w-full  flex ">
         <div className="w-3/5">
-          <Products />
+          <Products
+            billableData={billableData}
+            setBillableData={setBillableData}
+          />
         </div>
 
         <div className="w-2/5">
-          {/* <div className="test" style={{ width: '20000px' }}> */}
-          <Pricecart />
+          {/* <div  style={{ width: '500PX' }}> */}
+          <Pricecart
+            billableData={billableData}
+            setBillableData={setBillableData}
+          />
         </div>
       </div>
     </>
@@ -27,5 +33,3 @@ const Takeorder = () => {
 };
 
 export default Takeorder;
-
-

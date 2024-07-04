@@ -10,18 +10,26 @@ interface BillingItemPopup {
   isClose: any;
 }
 
-const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
+const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, editItem,  handleEditItem}) => {
+
   const initialValues: any = {
-    Price: item?.itemPrice || '',
-    qty: 1,
+    Price:  editItem?.itemPrice || item?.itemPrice || '',
+    qty: editItem?.qty || 1,
     // unit: '',
   };
 
   const schema = Yup.object({
     Price: Yup.string().required('Enter the Price'),
-
     qty: Yup.string().required('Enter the item Price'),
   });
+
+  const handleSubmit = (value:any) =>{
+      if(editItem){
+        handleEditItem(value)
+      }else{
+        handleSave(value)
+      }
+  }
 
   // Esc key pree popup close
   useEffect(() => {
@@ -30,9 +38,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
         isClose(false);
       }
     }
-
     window.addEventListener('keydown', handleKeyPress);
-
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
@@ -76,11 +82,11 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
 
                 <div className="ml-5">
                   <div className="text-xl font-bold text-gray-800 dark:text-white">
-                    {item?.itemName}{' '}
+                    { editItem?.itemName  || item?.itemName}{' '}
                   </div>
                   <p className="mt-2 dark:text-white">
                     {' '}
-                    Price : {item?.itemPrice}{' '}
+                    Price : { editItem?.itemPrice  || item?.itemPrice}{' '}
                   </p>
                 </div>
               </div>
@@ -90,7 +96,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(value) => {
-                  console.log('value >>>', value);
+                  handleSubmit(value)
                 }}
               >
                 <Form>
@@ -131,6 +137,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item }) => {
                   />
                 </div> */}
                   <button
+                  type='submit'
                     className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray"
                    
                   >
