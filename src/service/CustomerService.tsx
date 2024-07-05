@@ -10,3 +10,7 @@ export default async function getCstomers() {
     console.log(error)
   }
 }
+
+export function deleteCustomer (customers:object){
+  return axios.post(baseUrl + "customer/delete",customers);
+}
