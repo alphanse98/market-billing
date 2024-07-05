@@ -21,5 +21,5 @@ export function updateItem (item:object){
 }
 
 export function deleteItem (item:object){
-  return axios.delete(baseUrl + "item/delete",item)
+  return axios.post(baseUrl + "item/delete",item)
 }

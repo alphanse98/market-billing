@@ -1,3 +1,4 @@
+import React from 'react';
 import Breadcrumb from '../components/Breadcrumb.tsx';
 import ChartFour from '../components/ChartFour';
 import ChartOne from '../components/ChartOne.tsx';

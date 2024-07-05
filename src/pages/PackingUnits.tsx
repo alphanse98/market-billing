@@ -1,91 +1,77 @@
 import React, { useEffect, useState } from 'react';
-import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
 import EditIcon from '../Assets/SvgIcons/EditIcon';
-// import EyeIcon from '../Assets/SvgIcons/EyeIcon';
-import ItemsPopup from './popups/ItemsPopup';
-import ItemsViewPopup from './popups/ItemsViewPopup';
-import { vegtableImg } from '../Assets/Img/vegetableImg';
-import getItems, { addItem, updateItem, deleteItem } from '../service/ItemService';
+import DeleteIcon from '../Assets/SvgIcons/DeleteIcon';
+import PackingPopup from '../CustomComponents/popups/PackingPopup';
+import {
+  addPack,
+  getPack,
+  updatePack,
+  deletePack,
+} from '../service/PackingService';
 import Loader from '../common/Loader';
-import DeletPopup from './popups/DeletPopup';
-
-
-const ItemTableList = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isviewPopupOpen, setviewIsPopupOpen] = useState(false);
+import DeletPopup from '../CustomComponents/popups/DeletPopup';
+const PackingUnits = () => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
-  const [items, setItems] = useState([]);
-  const [editItem, setEditItem] = useState<object | null>(null);
-  const [isdeletePopUp, setdeletePopUp] = useState(false);
-  const [isdeletableItem, setdeletableItem] = useState<any>(null);
+  const [packPopup, setPackPopup] = useState(false);
+  const [isdeletePopUp, setIsDeletePopUp] = useState(false);
+  const [deletablePack, setDeletablePack] = useState<any>();
+  const [packList, setPackList] = useState([]);
+  const [editPack, setEditPack] = useState<any>();
 
-  
   // item api call
-  const fetchItems = async () => {
+  const fetchpackList = async () => {
     try {
-      const res: any = await getItems();
-      setItems(res);
+      const res: any = await getPack();
+      setPackList(res);
       seIsLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
 
-  // add item api call
-  const handleAddItem = async (Item: any) => {
-    const temCopy = { ...Item };
-    const items: any = localStorage.getItem('items');
-    temCopy.id = items?.length + 1;
+  const handleAddPack = async (value: any) => {
+    const temCopy = { ...value };
     temCopy.businessID = localStorage.getItem('businessID');
-    temCopy.itemImg = 'tomatto';
     temCopy.isActive = true;
+    // temCopy.id = 10;
     temCopy.createDate = '2019-04-02 11:45';
-    setIsPopupOpen(false);
+    setPackPopup(false);
     try {
-      await addItem(temCopy);
-      await fetchItems();
+      await addPack(temCopy);
+      await fetchpackList();
     } catch (error) {
       console.log(error);
     }
   };
 
-  // eidt item api call
-  const handleEditItem = async (item: any) => {
-    const temCopy: any = { ...editItem };
-    temCopy.itemName = item?.itemName;
-    temCopy.itemPrice = item?.itemPrice;
-    temCopy.businessID = localStorage.getItem('businessID');
-    setIsPopupOpen(false);
-    setEditItem(null);
+  const handleEditPack = async (value: any) => {
+    const temCopy: any = { ...editPack };
+    temCopy.packingName = value?.packingName;
+    temCopy.packingPrice = value?.packingPrice;
+
+    setEditPack(null);
+    setPackPopup(false);
 
     try {
-      await updateItem(temCopy);
-      await fetchItems();
+      await updatePack(temCopy);
+      await fetchpackList();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleDelete = async () =>{
-    console.log(isdeletableItem);
-    try{
-      await deleteItem(isdeletableItem);
-      await fetchItems();
-    }
-    catch (error){
+  const handleDelete = async () => {
+    console.log('delete', deletablePack);
+    try {
+      await deletePack(deletablePack);
+      await fetchpackList();
+    } catch (error) {
       console.log(error);
     }
-
-  }
+  };
 
   useEffect(() => {
-    let localItems: any = localStorage.getItem('items');
-    if (!JSON.parse(localItems)) {
-      fetchItems();
-    } else {
-      setItems(JSON.parse(localItems));
-      seIsLoading(false);
-    }
+    fetchpackList();
   }, []);
 
   if (isLoading) return <Loader />;
@@ -105,9 +91,9 @@ const ItemTableList = () => {
 
             <button
               className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 xl:mt-0 hover:bg-opacity-90"
-              onClick={() => setIsPopupOpen(true)}
+              onClick={() => setPackPopup(true)}
             >
-              Add Items
+              Add Packing units
             </button>
           </h4>
         </div>
@@ -117,7 +103,7 @@ const ItemTableList = () => {
             <p className="font-medium">Id</p>
           </div>
           <div className="col-span-3  items-center ">
-            <p className="font-medium">Item Name</p>
+            <p className="font-medium">Pack Name</p>
           </div>
           <div className="col-span-2 flex items-center hidden sm:block">
             <p className="font-medium">Price</p>
@@ -127,7 +113,7 @@ const ItemTableList = () => {
           </div>
         </div>
 
-        {items?.map((item: any) => (
+        {packList?.map((item: any) => (
           <div
             className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
             key={item?.id}
@@ -137,40 +123,38 @@ const ItemTableList = () => {
             </div>
             <div className="col-span-3 flex items-center">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                <div className="h-12.5 w-15 rounded-lg ">
-                  <img src={vegtableImg[item?.itemImg]} alt="item" />
-                </div>
                 <p className="text-sm text-black dark:text-white">
-                  {item?.itemName}
+                  {item?.packingName}
                 </p>
               </div>
             </div>
             <div className="col-span-2 flex items-center justify-start hidden sm:block">
               <p className="text-sm text-black  dark:text-white">
-                {item?.itemPrice}
+                {item?.packingPrice}
               </p>
             </div>
             <div className="col-span-2 flex items-center">
               <div className="flex items-center space-x-3.5">
                 {/* <button
-                  className="hover:text-primary"
-                  onClick={() => setviewIsPopupOpen(true)}
-                >
-                  <EyeIcon />
-                </button> */}
+                className="hover:text-primary"
+                onClick={() => setviewIsPopupOpen(true)}
+              >
+                <EyeIcon />
+              </button> */}
                 <button
                   className="hover:text-primary"
                   onClick={() => {
-                    setEditItem(item), setIsPopupOpen(true);
+                    setEditPack(item), setPackPopup(true);
                   }}
                 >
                   <EditIcon />
                 </button>
-                <button className="hover:text-primary"
-                  onClick={()=> {
-                    setdeletePopUp(true), setdeletableItem(item);
-                    }}>
-                  
+                <button
+                  className="hover:text-primary"
+                  onClick={() => {
+                    setIsDeletePopUp(true), setDeletablePack(item);
+                  }}
+                >
                   <DeleteIcon />
                 </button>
               </div>
@@ -178,24 +162,29 @@ const ItemTableList = () => {
           </div>
         ))}
       </div>
-      <ItemsPopup
-        isOpen={isPopupOpen}
-        isClose={setIsPopupOpen}
-        handleAddItem={handleAddItem}
-        editItem={editItem}
-        setEditItem={setEditItem}
-        handleEditItem={handleEditItem}
+      <PackingPopup
+        isOpen={packPopup}
+        isClose={setPackPopup}
+        handleAddPack={handleAddPack}
+        editPack={editPack}
+        setEditPack={setEditPack}
+        handleEditPack={handleEditPack}
       />
-      <ItemsViewPopup isOpen={isviewPopupOpen} isClose={setviewIsPopupOpen} />
+
+      {/* <ItemsViewPopup isOpen={isviewPopupOpen} isClose={setviewIsPopupOpen} /> */}
 
       <DeletPopup
         isOpen={isdeletePopUp}
-        isClose={setdeletePopUp}
+        isClose={setIsDeletePopUp}
         delet={handleDelete}
-        massage={`want to delete ${isdeletableItem?.itemName} item ?`}
+        massage={`want to delete ${deletablePack?.packingName} pack ?`}
       />
     </>
   );
 };
 
-export default ItemTableList;
+export default PackingUnits;
+
+// function deletPack(deletablePack: any) {
+//   throw new Error('Function not implemented.');
+// }

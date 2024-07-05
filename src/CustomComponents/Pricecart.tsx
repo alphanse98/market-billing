@@ -32,19 +32,25 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
     console.log(item);
   };
 
-  const handleEditItem = (value:any) => {
-    
-    let updatedItem :AnyObject = {...editItem}
-    updatedItem.itemPrice = value?.itemPrice
-    updatedItem.qty = value?.qty
+  const handleEditItem = (value: any) => {
+    let updatedItem: AnyObject = { ...editItem };
+    updatedItem.itemPrice = value?.Price;
+    updatedItem.qty = value?.qty;
 
-    let items =  billableData.itms 
+    let billableItems = billableData.items;
 
-    // for (let i =0 ; i<= )
+    for (let i = 0; i < billableItems.length; i++) {
+      if (billableItems[i] && billableItems[i].id === updatedItem?.id) {
+        billableItems[i] = updatedItem;
+      }
+    }
 
-    console.log(items)
+    setBillableData((prev: any) => ({
+      ...prev,
+      items: billableItems,
+    }));
 
-    setisEditpopup(false)
+    setisEditpopup(false);
   };
 
   return (

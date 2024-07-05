@@ -4,10 +4,28 @@ import Products from '../CustomComponents/Products';
 
 const Takeorder = () => {
   const [billableData, setBillableData] = useState({
-    date: '',
+    billingID: '',
+    businessID: '',
+    customerID: '',
     billNumber: '',
-    customername: '',
-    items: [],
+    customerName: '',
+    balanceAmount: '',
+    paidAmount: '',
+    totalAmount: '',
+    date: '',
+    isActive: '',
+    items: [
+      {
+        businessID: '',
+        itemName: '',
+        billingID: '',
+        itemPrice: '',
+        isActive: '',
+        billingNumber: '',
+        quantity: '',
+        totalAmount: '',
+      }
+    ],
   });
 
   return (
