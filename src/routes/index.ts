@@ -14,7 +14,8 @@ const Billings = lazy(() => import('../pages/Billings'));
 const Takeorder = lazy(()=>import('../pages/Takeorder'));
 const Customers = lazy(() => import('../pages/Customers'));
 const Employees = lazy(()=>import('../pages/Employees'));
-// const CommonTable = lazy(()=>import('../CustomComponents/table/CommonTable'));
+const PackingUnits = lazy(()=>import('../pages/PackingUnits'));
+// const Customers = lazy(()=>import('../CustomComponents/table/CommonTable'));
 const coreRoutes = [
   {
     path: '/Customers',
@@ -25,6 +26,11 @@ const coreRoutes = [
     path: '/Items',
     title: 'Items',
     component: Items,
+  },
+  {
+    path: '/PackingUnits',
+    title: 'PackingUnits',
+    component: PackingUnits,
   },
   {
     path: '/Billings',

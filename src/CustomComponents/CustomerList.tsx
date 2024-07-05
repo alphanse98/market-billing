@@ -82,9 +82,9 @@ const CustomerListTable = () => {
         </div>
       </div>
 
-      {customers?.map((item: any) => (
+      {customers?.map((item: any, index:number) => (
       // {CustomerList?.map((item: any) => (
-        <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
+        <div key={index} className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
           <div className="col-span-1  items-center    ">
             <p className="text-sm text-black dark:text-white">{item?.id}</p>
           </div>

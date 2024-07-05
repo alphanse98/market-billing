@@ -11,9 +11,3 @@ const Employees = () => {
 
 export default Employees;
 
-// Nmae *
-// Mobile number *
-// Password *
-// Address *
-// Access *
-// Email (optional)
