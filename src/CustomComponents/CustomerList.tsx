@@ -4,8 +4,9 @@ import EyeIcon from '../Assets/SvgIcons/EyeIcon';
 import React, { useEffect, useState } from 'react';
 import CustomerPopup from './popups/CustomerPopup';
 import CustomerViewPopup from './popups/CustomerViewPopup';
-import getCstomers from '../service/CustomerService';
+import getCstomers, { deleteCustomer } from '../service/CustomerService';
 import Loader from '../common/Loader';
+import DeletPopup from './popups/DeletPopup';
 
 const CustomerListTable = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -13,6 +14,9 @@ const CustomerListTable = () => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
 
   const [customers, setCustomers] = useState([]);
+  const [isDeletedPopUp, setDeletedPopUp] = useState(false);
+  const [isdeletableCustomer, setdeletableCustomer] = useState<any>(null);
+
 
   const fetchCustomers = async () => {
     try {
@@ -27,6 +31,19 @@ const CustomerListTable = () => {
   // useEffect(() => {
   //   fetchCustomers();
   // }, []);
+
+  const handleDeleted = async () =>{
+    console.log(isdeletableCustomer);
+    try{
+      await deleteCustomer(isdeletableCustomer);
+      await fetchCustomers();
+
+    }
+    catch(error){
+      console.log(error);
+    }
+
+  }
 
   useEffect(() => {
     let localItems: any = localStorage.getItem('customers');
@@ -123,7 +140,11 @@ const CustomerListTable = () => {
                 <DownloadIcon />
               </button>
 
-              <button className="hover:text-primary">
+              <button className="hover:text-primary"
+              onClick={()=>{
+                setDeletedPopUp(true), setdeletableCustomer(true)
+              }}
+              >
                 <DeleteIcon />
               </button>
             </div>
@@ -132,6 +153,14 @@ const CustomerListTable = () => {
       ))}
       <CustomerPopup isOpen={isPopupOpen} isClose={setIsPopupOpen} />
       <CustomerViewPopup isOpen={isViewPopup} isClose={setIsviewPopup} />
+      <DeletPopup  isOpen={isDeletedPopUp}
+      isClose={setDeletedPopUp}
+      delet={handleDeleted}
+      massage={`want to delete ${isdeletableCustomer?.customersName} customer ?`}
+      
+      />
+
+      
     </div>
   );
 };
