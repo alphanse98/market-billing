@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pricecart from '../CustomComponents/Pricecart';
 import Products from '../CustomComponents/Products';
 
 const Takeorder = () => {
   const [billableData, setBillableData] = useState({
-    billingID: '',
+    // billingID: '',
     businessID: '',
     customerID: '',
-    billNumber: '',
+    // billNumber: '',
     customerName: '',
-    balanceAmount: '',
-    paidAmount: '',
-    totalAmount: '',
+    // balanceAmount: '',
+    // paidAmount: '',
+    totalAmount: 0,
     date: '',
     isActive: '',
-    items: [
-      {
-        businessID: '',
-        itemName: '',
-        billingID: '',
-        itemPrice: '',
-        isActive: '',
-        billingNumber: '',
-        quantity: '',
-        totalAmount: '',
-      }
+    items: [ 
+      // {
+      //   businessID: '',   ll,;
+      //   itemName: '',
+      //   billingID: '',
+      //   itemPrice: '',
+      //   isActive: '',
+      //   billingNumber: '',
+      //   quantity: '', 
+      //   totalAmount: '',
+      // }
     ],
   });
+
+  useEffect(()=>{
+    let total = 0;
+    billableData?.items?.map((item:any)=>{
+      total += item?.totalAmount
+    })
+
+    setBillableData((prev: any) => ({
+      ...prev,
+      totalAmount: total,
+    }));
+  },[])
 
   return (
     <>
@@ -50,4 +62,5 @@ const Takeorder = () => {
   );
 };
 
-export default Takeorder;
+export default Takeorder;  
+//  mhgfguy9yt 987987 

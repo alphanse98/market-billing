@@ -5,10 +5,13 @@ import EditIcon from '../Assets/SvgIcons/EditIcon';
 import ItemsPopup from './popups/ItemsPopup';
 import ItemsViewPopup from './popups/ItemsViewPopup';
 import { vegtableImg } from '../Assets/Img/vegetableImg';
-import getItems, { addItem, updateItem, deleteItem } from '../service/ItemService';
+import getItems, {
+  addItem,
+  updateItem,
+  deleteItem,
+} from '../service/ItemService';
 import Loader from '../common/Loader';
 import DeletPopup from './popups/DeletPopup';
-
 
 const ItemTableList = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -19,7 +22,6 @@ const ItemTableList = () => {
   const [isdeletePopUp, setdeletePopUp] = useState(false);
   const [isdeletableItem, setdeletableItem] = useState<any>(null);
 
-  
   // item api call
   const fetchItems = async () => {
     try {
@@ -57,7 +59,6 @@ const ItemTableList = () => {
     temCopy.businessID = localStorage.getItem('businessID');
     setIsPopupOpen(false);
     setEditItem(null);
-
     try {
       await updateItem(temCopy);
       await fetchItems();
@@ -66,17 +67,27 @@ const ItemTableList = () => {
     }
   };
 
-  const handleDelete = async () =>{
-    console.log(isdeletableItem);
-    try{
-      await deleteItem(isdeletableItem);
+  const handleDelete = async () => {
+    let temCopy = {...isdeletableItem}
+    temCopy.isActive = false
+    try {
+      await deleteItem(temCopy);
       await fetchItems();
-    }
-    catch (error){
+    } catch (error) {
       console.log(error);
     }
+  };
 
-  }
+  const handleRestore = async (item:any) => {
+    let temCopy = {...item}
+    temCopy.isActive = true
+    try {
+      await deleteItem(temCopy);
+      await fetchItems();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     let localItems: any = localStorage.getItem('items');
@@ -128,56 +139,81 @@ const ItemTableList = () => {
         </div>
 
         {items?.map((item: any) => (
-          <div
-            className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
+          <div 
+            className={`  grid grid-cols-6 border-t border-stroke py-4.5 px-4  dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5 ${
+               !item?.isActive ? 'opacity-80' : 'bg-red-500'
+              //  item?.isActive ? 'bg-[#FECACA]' : 'bg-red-500'
+            }`}
             key={item?.id}
           >
-            <div className="col-span-1  items-center  ">
-              <p className="text-sm text-black dark:text-white">{item?.id}</p>
+            <div
+              className={`col-span-1 items-center ${
+                !item?.isActive && 'opacity-40'
+              }`}
+            >
+              <p className="text-sm text-black dark:text-white">{item?.itemId}</p>
             </div>
-            <div className="col-span-3 flex items-center">
+
+            <div
+              className={` col-span-3 flex items-center ${
+                !item?.isActive && 'opacity-40'
+              }`}
+            >
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
                 <div className="h-12.5 w-15 rounded-lg ">
                   <img src={vegtableImg[item?.itemImg]} alt="item" />
                 </div>
-                <p className="text-sm text-black dark:text-white">
+                <p className=" text-sm text-black dark:text-white">
                   {item?.itemName}
                 </p>
               </div>
             </div>
-            <div className="col-span-2 flex items-center justify-start hidden sm:block">
+
+            <div
+              className={`col-span-2 flex items-center justify-start hidden sm:block ${
+                !item?.isActive && 'opacity-40'
+              }`}
+            >
               <p className="text-sm text-black  dark:text-white">
                 {item?.itemPrice}
               </p>
             </div>
+
             <div className="col-span-2 flex items-center">
-              <div className="flex items-center space-x-3.5">
-                {/* <button
-                  className="hover:text-primary"
-                  onClick={() => setviewIsPopupOpen(true)}
-                >
-                  <EyeIcon />
-                </button> */}
+              {item?.isActive ? (
+                <div className="flex items-center space-x-3.5">
+                  <button
+                    className="hover:text-primary"
+                    onClick={() => {
+                      setEditItem(item), setIsPopupOpen(true);
+                    }}
+                  >
+                    <EditIcon />
+                  </button>
+                  <button
+                    className="hover:text-primary"
+                    onClick={() => {
+                      setdeletePopUp(true), setdeletableItem(item);
+                    }}
+                  >
+                    <DeleteIcon />
+                  </button>
+                </div>
+              ) : (
                 <button
-                  className="hover:text-primary"
+                  className="bg-primary font-medium rounded-md py-2 px-5 text-white mt-4 opacity-100 xl:mt-0 hover:bg-opacity-90"
                   onClick={() => {
-                    setEditItem(item), setIsPopupOpen(true);
+                    handleRestore(item);
                   }}
                 >
-                  <EditIcon />
+                  Restore
                 </button>
-                <button className="hover:text-primary"
-                  onClick={()=> {
-                    setdeletePopUp(true), setdeletableItem(item);
-                    }}>
-                  
-                  <DeleteIcon />
-                </button>
-              </div>
+              )}
             </div>
           </div>
         ))}
       </div>
+
       <ItemsPopup
         isOpen={isPopupOpen}
         isClose={setIsPopupOpen}

@@ -1,13 +1,16 @@
 import React from 'react';
 import CloseIcon from '../../Assets/SvgIcons/CloseIcon';
 import { useEffect } from 'react';
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 interface CustomerPopup {
   isOpen: boolean;
   isClose: any;
 }
 
-const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
+const CustomerPopup: React.FC<any> = ({ isOpen, isClose, handleAdd, handleEdit, editCustomer, setEditCustomer }) => {
+
   // Esc key pree popup close
   useEffect(() => {
     function handleKeyPress(event: any) {
@@ -15,13 +18,45 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
         isClose(false);
       }
     }
-
     window.addEventListener('keydown', handleKeyPress);
-
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
+
+  const handleClose = () => {
+    isClose(false);
+    setEditCustomer(null);
+  };
+
+  let initialValues = {
+    customersName : editCustomer?.customersName || "",
+    address : editCustomer?.address || "",
+    mobile : editCustomer?.mobile || "",
+    secMobile : editCustomer?.secMobile || "",
+    email : editCustomer?.email || "",
+  }
+
+  const schema = Yup.object({
+    customersName: Yup.string()
+      .required('Enter the customer name')
+      .max(200, 'max 200 character'),
+    address: Yup.string()
+      .required('Enter the address')
+      .max(200, 'max 200 character'),
+    mobile: Yup.string()
+      .min(10, 'Mobile number must be exactly 10 digits')
+      .max(10, 'Mobile number must be exactly 10 digits')
+      .required('Mobile number is required'),
+      
+      secMobile: Yup.string()
+      .min(10, 'Mobile number must be exactly 10 digits')
+      .max(10, 'Mobile number must be exactly 10 digits'),
+      email: Yup.string()
+      .max(200, 'max 200 character'),
+  });
+
+
 
   if (isOpen)
     return (
@@ -31,7 +66,7 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
           backdropFilter: 'blur(2px)',
           backgroundColor: 'rgba(9, 9, 9, 0.8)',
         }}
-        onClick={() => isClose(false)}
+        onClick={() => handleClose()}
       >
         {/* child popup iu start */}
         <div
@@ -46,7 +81,7 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
           <div className="flex justify-end mb-2  p-2">
             <div
               className=" fixed rounded-full bg-meta-1 p-2 cursor-pointer"
-              onClick={() => isClose(false)}
+              onClick={() => handleClose()}
             >
               <CloseIcon />
             </div>
@@ -58,65 +93,114 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
               <div className="rounded-sm  bg-white  dark:border-strokedark dark:bg-boxdark">
                 <div className=" py-4 px-6.5">
                   <h3 className="text-center mb-5 text-xl font-bold text-black dark:text-white sm:text-2xl">
-                    Add Customer
+                    {/* Add Customer */}
+                    {editCustomer ? 'Edit Customer' : 'Add Customer'}
                   </h3>
                 </div>
-                <form action="#">
+
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={schema}
+                  onSubmit={(value) => {
+                    if (editCustomer) {
+                      handleEdit(value);
+                    } else {
+                      handleAdd(value);
+                    }
+                  }}
+                >
+                <Form action="#">
                   <div className="">
                     <div className="w-full mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Name <span className="text-meta-1">*</span>
                       </label>
-                      <input
+
+                      <Field
                         type="text"
-                        placeholder="Enter your first name"
+                        name = "customersName"
+                        // placeholder="Enter your  name"
+                         placeholder="Customer name"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
+
+                      <ErrorMessage
+                          name="customersName"
+                          component="div"
+                          className="text-danger"
+                        />
                     </div>
 
                     <div className="mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Mobile Number <span className="text-meta-1">*</span>
                       </label>
-                      <input
+                      <Field
                         type="number"
-                        placeholder="Enter your email address"
+                        name = "mobile"
+                        placeholder="Enter mobile number"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
-                    </div>
-
-                    <div className="mb-4.5">
-                      <label className="mb-2.5 block text-black dark:text-white">
-                        secondary Mobile Number{' '}
-                        <span className="text-xs">(optional)</span>
-                      </label>
-                      <input
-                        type="number"
-                        placeholder="Enter your email address"
-                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                      />
+                      <ErrorMessage
+                          name="mobile"
+                          component="div"
+                          className="text-danger"
+                        />
                     </div>
 
                     <div className="mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Address <span className="text-meta-1">*</span>
                       </label>
-                      <textarea
-                        rows={3}
-                        placeholder="Type your message"
+
+                      <Field
+                        // rows={3}
+                        type = "text"
+                        name="address"
+                        placeholder="Customer Address"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
-                      ></textarea>
+                      />
+                       <ErrorMessage
+                          name="address"
+                          component="div"
+                          className="text-danger"
+                        />
+                    </div>
+
+                    <div className="mb-4.5">
+                      <label className="mb-2.5 block text-black dark:text-white">
+                        Alternate Mobile Number{' '}
+                        <span className="text-xs">(optional)</span>
+                      </label>
+
+                      <Field
+                        type="number"
+                        name="secMobile"
+                        placeholder="Enter mobile number"
+                        className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
+                      />
+                      <ErrorMessage
+                          name="secMobile"
+                          component="div"
+                          className="text-danger"
+                        />
                     </div>
 
                     <div className="w-full mb-4.5">
                       <label className="mb-2.5 block text-black dark:text-white">
                         Email <span className="text-xs">(optional)</span>
                       </label>
-                      <input
+                      <Field
                         type="email"
+                        name="email"
                         placeholder="Enter your Email"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       />
+                      <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-danger"
+                        />
                     </div>
 
                     <div className="mb-4.5">
@@ -124,18 +208,28 @@ const CustomerPopup: React.FC<CustomerPopup> = ({ isOpen, isClose }) => {
                         Additional Notes{' '}
                         <span className="text-xs">(optional)</span>
                       </label>
+
                       <textarea
                         rows={3}
                         placeholder="Type your message"
                         className="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                       ></textarea>
+
+                      <ErrorMessage
+                          name="itemName"
+                          component="div"
+                          className="text-danger"
+                        />
                     </div>
 
-                    <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray">
+                    <button type='submit' className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray">
                       Add Customer
                     </button>
                   </div>
-                </form>
+                </Form>
+                </Formik>
+                
+
               </div>
             </div>
           </div>

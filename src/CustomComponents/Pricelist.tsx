@@ -10,6 +10,8 @@ const Pricelist: React.FC<any> = ({ item, index, selectDeleteItem, selectEditIte
         className="bg-[#e5e7eb] flex justify-between p-2 mb-1 cursor-pointer task cursor-move rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark"
         key={index}
       >
+
+        <div className="flex items-center">
         <div className="flex items-center gap-2 w-52">
           <div>
             <img
@@ -18,15 +20,21 @@ const Pricelist: React.FC<any> = ({ item, index, selectDeleteItem, selectEditIte
               className="w-10 h-10 rounded-md object-cover"
             />
           </div>
+
           <div>
             <p>{item?.itemName}</p>
             <p>{item?.itemPrice}</p>
           </div>
+
+          
+
+        </div>
+        <p>Qty {item?.qty}</p>
         </div>
 
-        <div className="flex items-end justify-center">
+        {/* <div className="flex items-end justify-center">
           <p>Qty {item?.qty}</p>
-        </div>
+        </div> */}
 
         <div className="flex flex-col gap-1">
           <div className="flex gap-2">
@@ -43,7 +51,8 @@ const Pricelist: React.FC<any> = ({ item, index, selectDeleteItem, selectEditIte
               <DeleteIcon />
             </div>
           </div>
-          <p>₹ 300</p>
+          {/* <p>₹ 300</p> */}
+          <p className='pt-2'>{item?.totalAmount}</p>
         </div>
       </div>
     </>

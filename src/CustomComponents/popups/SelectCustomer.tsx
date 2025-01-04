@@ -5,14 +5,12 @@ import ProfileIcon from '../../Assets/SvgIcons/ProfileIcon';
 import getCstomers from '../../service/CustomerService';
 import Loader from '../../common/Loader';
 
-interface SelectCustomerPopup {
-  isOpen: boolean;
-  isClose: any;
-}
 
-const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
+
+const SelectCustomerPopup: React.FC<any> = ({
   isOpen,
   isClose,
+  handleCustomer,
 }) => {
   const [isLoading, seIsLoading] = useState<boolean | null>(true);
   const [customers, setCustomers] = useState([]);
@@ -26,11 +24,6 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
       console.log(error);
     }
   };
-
-
-  // useEffect(() => {
-  //   fetchCustomers();
-  // }, []);
 
   useEffect(() => {
     let localItems: any = localStorage.getItem('customers');
@@ -57,7 +50,7 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
     };
   }, []);
 
-  // if (isLoading) return <Loader />;
+  if (isLoading) return <Loader />;
 
   if (isOpen)
     return (
@@ -99,9 +92,9 @@ const SelectCustomerPopup: React.FC<SelectCustomerPopup> = ({
 
                 <div className="p-1">
                   <div className=" overflow-y-auto">
-                    {customers?.map((item: any) => (
-                      <div className="flex  items-center   gap-6  m-2 p-2 cursor-pointer">
-                        <div className="  items-center    ">
+                    {customers?.map((item: any, index:any) => (
+                      <div onClick={()=> handleCustomer(item)} className="flex  items-center   gap-6  m-2 p-2 cursor-pointer" key={index}>
+                        <div className="items-center">
                           <p className="rounded-full bg-primary p-3">
                             <ProfileIcon />
                           </p>

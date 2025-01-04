@@ -8,13 +8,21 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 interface BillingItemPopup {
   isOpen: boolean;
   isClose: any;
+  handleClose : () => void;
 }
 
-const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, editItem,  handleEditItem}) => {
-
+const BillingItemPopup: React.FC<any> = ({
+  isOpen,
+  isClose,
+  item,
+  handleSave,
+  editItem,
+  handleEditItem,
+  handleClose,
+}) => {
   const initialValues: any = {
-    Price:  editItem?.itemPrice || item?.itemPrice || '',
-    qty: editItem?.qty || 1,
+    Price: editItem?.itemPrice || item?.itemPrice || 1,
+    qty: item?.qty || editItem?.qty || 1,
     // unit: '',
   };
 
@@ -23,13 +31,13 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
     qty: Yup.string().required('Enter the item Price'),
   });
 
-  const handleSubmit = (value:any) =>{
-      if(editItem){
-        handleEditItem(value)
-      }else{
-        handleSave(value)
-      }
-  }
+  const handleSubmit = (value: any) => {
+    if (editItem) {
+      handleEditItem(value);
+    } else {
+      handleSave(value);
+    }
+  };
 
   // Esc key pree popup close
   useEffect(() => {
@@ -53,7 +61,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
           backdropFilter: 'blur(2px)',
           backgroundColor: 'rgba(9, 9, 9, 0.8)',
         }}
-        onClick={() => isClose(false)}
+        onClick={handleClose}
       >
         {/* child popup iu start */}
         <div className=" p-2  rounded-xl shadow-lg rounded-sm border border-stroke bg-white  shadow-default dark:border-strokedark dark:bg-boxdark w-[99%] sd:w-[70%]   md:w-[60%] lg:w-[45%]  xl:w-[30%] ">
@@ -73,7 +81,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
           >
             <div className="flex flex-col ">
               <h3 className="text-center mb-4 text-xl font-bold text-gray-800 dark:text-white">
-                Add Item
+                {editItem ? 'Edit Item' : 'Add Item'}
               </h3>
               <div className="flex  ">
                 <div className="w-20 h-20 ">
@@ -82,11 +90,11 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
 
                 <div className="ml-5">
                   <div className="text-xl font-bold text-gray-800 dark:text-white">
-                    { editItem?.itemName  || item?.itemName}{' '}
+                    {editItem?.itemName || item?.itemName}{' '}
                   </div>
                   <p className="mt-2 dark:text-white">
                     {' '}
-                    Price : { editItem?.itemPrice  || item?.itemPrice}{' '}
+                    Price : {editItem?.itemPrice || item?.itemPrice}{' '}
                   </p>
                 </div>
               </div>
@@ -96,7 +104,7 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
                 initialValues={initialValues}
                 validationSchema={schema}
                 onSubmit={(value) => {
-                  handleSubmit(value)
+                  handleSubmit(value);
                 }}
               >
                 <Form>
@@ -131,15 +139,14 @@ const BillingItemPopup: React.FC<any> = ({ isOpen, isClose, item, handleSave, ed
                   {/* <div className="flex mb-2">
                   <p className="ml-5 dark:text-white">Units : </p>
                   <input
-                    type="number"
+                    type="number"  
                     
                     className="ml-4 h-10 w-34 p-2 rounded border-[1.5px] border-stroke bg-transparent  font-sm outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                   />
                 </div> */}
                   <button
-                  type='submit'
+                    type="submit"
                     className="flex w-full mt-5 justify-center rounded bg-primary p-3 font-medium text-gray"
-                   
                   >
                     Save
                   </button>

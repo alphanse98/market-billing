@@ -11,32 +11,38 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
   const [iseditpopup, setisEditpopup] = useState(false);
   const [deletableItem, setDeletableItem] = useState<any>(null);
   const [editItem, setEditItem] = useState<object>();
-
+  const [isClear, setIsclear]= useState<boolean>(false);
+  
   const selectDeleteItem = (item: object) => {
     setisDeletepopup(true);
     setDeletableItem(item);
-    // setDeleteIndex(index);
   };
 
   const handleDelete = () => {
     let tempCopy: any = { ...billableData };
+
     tempCopy.items = tempCopy?.items.filter(
       (param: any) => param?.id !== deletableItem?.id,
     );
+
+    let grandTotal = 0;
+    tempCopy?.items.map((item: any) => (grandTotal += item?.totalAmount));
+    tempCopy.totalAmount = grandTotal;
+
     setBillableData(tempCopy);
   };
 
   const selectEditItem = (item: object) => {
     setEditItem(item);
     setisEditpopup(true);
-    console.log(item);
   };
 
   const handleEditItem = (value: any) => {
     let updatedItem: AnyObject = { ...editItem };
     updatedItem.itemPrice = value?.Price;
     updatedItem.qty = value?.qty;
-
+    updatedItem.totalAmount = value?.qty * value?.Price;
+    // calculate item total
     let billableItems = billableData.items;
 
     for (let i = 0; i < billableItems.length; i++) {
@@ -45,13 +51,43 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
       }
     }
 
+    let grandTotal = 0;
+    billableData?.items.map((item: any) => (grandTotal += item?.totalAmount));
+
     setBillableData((prev: any) => ({
       ...prev,
       items: billableItems,
+      totalAmount: grandTotal,
     }));
 
     setisEditpopup(false);
   };
+
+  const handleCustomer = (customer: any) => {
+    setBillableData((prev: any) => ({
+      ...prev,
+      customerID: customer.id,
+      customerName: customer.customersName,
+    })); 
+    setSelectCustomerPopup(false);
+  };
+
+  const handleClear = ()=>{
+    setBillableData({
+      billingID: '',
+      businessID: '',
+      customerID: '',
+      billNumber: '',
+      customerName: '',
+      balanceAmount: '',
+      paidAmount: '',
+      totalAmount: 0,
+      date: '',
+      isActive: '',
+      items: [],
+    })
+    
+  }
 
   return (
     <div>
@@ -60,7 +96,8 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
           className="bg-primary font-medium rounded-md py-2 px-5 text-white xl:mt-0 hover:bg-opacity-90"
           onClick={() => setSelectCustomerPopup(true)}
         >
-          Select Customer
+          
+          {billableData.customerID?billableData.customerName:"Select Customer"}
         </button>
       </div>
       <div className="pt-8 p-1">
@@ -68,7 +105,7 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
           <p className="font-bold">Billing Items</p>
         </div>
         <div
-          className="py-2 overflow-y-auto  scrollbar  p-1"
+          className="py-2 overflow-y-auto  scrollbar p-1"
           style={{ height: '61vh' }}
         >
           {billableData?.items?.map((item: any, index: any) => (
@@ -88,7 +125,8 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
           <p className="font-bold">Total</p>
         </div>
         <div className="px-2">
-          <p className="font-bold">₹550</p>
+          {/* <p className="font-bold"> ₹ 550</p> */}
+          <p className="font-bold"> ₹ {billableData?.totalAmount}</p>
         </div>
       </div>
       <div className="border border-1  m-2"></div>
@@ -97,7 +135,7 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
         <button className="bg-primary font-medium rounded-md py-2 px-5 text-white hover:bg-opacity-90">
           Place Order
         </button>
-        <button className="bg-primary font-medium rounded-md py-2 px-5 text-white hover:bg-opacity-90">
+        <button onClick={()=> setIsclear(true)} className="bg-primary font-medium rounded-md py-2 px-5 text-white hover:bg-opacity-90">
           Clear
         </button>
       </div>
@@ -105,6 +143,7 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
       <SelectCustomerPopup
         isOpen={CustomerPopup}
         isClose={setSelectCustomerPopup}
+        handleCustomer={handleCustomer}
       />
 
       <DeletPopup
@@ -114,11 +153,20 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
         massage={`want to delete  ${deletableItem?.itemName} item ?`}
       />
 
+      <DeletPopup
+        isOpen={isClear}
+        isClose={setIsclear}
+        delet={handleClear}
+        massage={`want to delete all items ?`}
+      />
+
       <BillingItemPopup
+        handleClose={() => {
+          setEditItem({});
+          setisEditpopup(false);
+        }}
         isOpen={iseditpopup}
         isClose={setisEditpopup}
-        item={null}
-        handleSave={null}
         editItem={editItem}
         handleEditItem={handleEditItem}
       />
@@ -127,3 +175,4 @@ const Pricecart: React.FC<any> = ({ billableData, setBillableData }) => {
 };
 
 export default Pricecart;
+

@@ -43,7 +43,8 @@ function App() {
       </>
     );
 
-  if (localStorage.getItem('AuthToken'))
+  // if (localStorage.getItem('AuthToken'))
+  if (true)
     return (
       <>
         <Toaster

@@ -11,6 +11,14 @@ export default async function getCstomers() {
   }
 }
 
+export function addCustomer (customers:object){
+  return axios.post(baseUrl + "customer/create",customers);
+}
+
+export function updateCustomer (customers:object){
+  return axios.put(baseUrl + "customer/update",customers);
+}
+
 export function deleteCustomer (customers:object){
   return axios.post(baseUrl + "customer/delete",customers);
 }
